@@ -16,22 +16,26 @@
 </template>
 
 <script>
-    import RenderlessTagInput from "./RenderlessTagInput.vue"
+import RenderlessTagInput from './RenderlessTagInput.vue';
 
-    export default {
-        components: {
-            RenderlessTagInput
-        },
-        model: {
-            prop: "tags",
-            event: "update"
-        },
-        props: {
-            tags: { required: true }
-        },
-        data() {
-            return {}
-        },
-        methods: {}
-    }
+export default {
+    components: {
+        RenderlessTagInput,
+    },
+
+    model: {
+        prop: 'tags',
+        event: 'update',
+    },
+
+    props: {
+        tags: { required: true },
+    },
+
+    data() {
+        return {};
+    },
+
+    methods: {},
+};
 </script>

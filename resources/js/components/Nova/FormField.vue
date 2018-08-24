@@ -11,7 +11,7 @@
 
 <script>
 import { FormField, HandlesValidationErrors } from 'laravel-nova';
-import InlineTagInput from '../Tags/InlineTagInput'
+import InlineTagInput from '../Tags/InlineTagInput';
 
 export default {
     mixins: [FormField, HandlesValidationErrors],
@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             tags: [],
-        }
+        };
     },
 
     methods: {
@@ -42,8 +42,8 @@ export default {
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-          console.log('fill', this.tags)
-          formData.append(this.field.attribute, this.tags)
+            console.log('fill', this.tags);
+            formData.append(this.field.attribute, this.tags);
         },
 
         /**
@@ -51,8 +51,8 @@ export default {
          */
         handleChange(value) {
             console.log('handleChange', value);
-          this.value = value
-        }
-    }
-}
+            this.value = value;
+        },
+    },
+};
 </script>
