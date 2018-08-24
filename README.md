@@ -94,6 +94,8 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 
 - [Freek Van der Herten](https://github.com/freekmurze)
 
+The Vue components that render the tags are based upon the tag Vue components created by [Adam Wathan](https://twitter.com/adamwathan) as shown in [his excellent Advanced Vue Component Design course](https://adamwathan.me/advanced-vue-component-design/).
+
 ## Support us
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
