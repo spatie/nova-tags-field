@@ -9,33 +9,60 @@ This package contains a Nova field to add tags to resources. Under the hood it u
 
 ![screenshot of the tags field](https://spatie.github.io/nova-tags-field/screenshot.png)
 
+## Requirements
+
+This nova field requires a database that supports json fields such as MySQL 5.7.8 or higher.
+
 ## Installation
 
-You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
+First you must install [spatie/laravel-tags](https://github.com/spatie/laravel-tags) into your Laravel app. Here are [the installation instructions](https://docs.spatie.be/laravel-tags/v2/installation-and-setup) for that package.
+
+Next, you can install this package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
 ```bash
 composer require spatie/nova-tags-field
 ```
 
-Next up, you must register the tool with Nova. This is typically done in the `tools` method of the `NovaServiceProvider`.
+## Usage
+
+To make an Eloquent model taggable just add the `\Spatie\Tags\HasTags` trait to it:
 
 ```php
-// in app/Providers/NovaServiceProvider.php
-
-// ...
-
-public function tools()
+class BlogPost extends \Illuminate\Database\Eloquent\Model
 {
-    return [
-        // ...
-        new \Spatie\TagsField\Tool(),
-    ];
+    use \Spatie\Tags\HasTags;
+    
+    ...
 }
 ```
 
-## Usage
+Next you can use the `Spatie\TagsField\Tags` field in your Nova resource:
 
-Click on the "nova-tags-field" menu item in your Nova app to see the tool provided by this package.
+```php
+namespace App\Nova;
+
+// ...
+
+class BlogPost extends Resource
+{
+    // ...
+    
+    public function fields(Request $request)
+    {
+        return [
+            // ...
+            
+            Tags::make('Tags'),
+
+            // ...
+        ];
+    }
+}
+```
+
+Now you can view and add tags on the blog posts screen in your Nova app. Any tags will be saved in the `tags` table. 
+
+For more info on how to work with the save tags, head over to [the docs of spatie/laravel-tags](https://docs.spatie.be/laravel-tags/).
 
 ### Testing
 
