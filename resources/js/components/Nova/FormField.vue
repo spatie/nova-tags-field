@@ -31,7 +31,7 @@ export default {
          * Set the initial, internal value for the field.
          */
         setInitialValue() {
-            const tagNames = this.field.value.map(tag => tag.name.en);
+            const tagNames = this.field.value.map(tag => tag.name);
 
             this.value = tagNames;
 
