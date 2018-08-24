@@ -2,9 +2,9 @@
 
 namespace Spatie\TagsField;
 
+use Spatie\Tags\Tag;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Spatie\Tags\Tag;
 
 class Tags extends Field
 {
@@ -21,7 +21,7 @@ class Tags extends Field
 
     public function resolveAttribute($resource, $attribute = null)
     {
-        return $resource->tags->map(function(Tag $tag) {
+        return $resource->tags->map(function (Tag $tag) {
             return ['id' => $tag->id, 'name' => $tag->name];
         });
     }
