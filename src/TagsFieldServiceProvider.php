@@ -2,9 +2,9 @@
 
 namespace Spatie\TagsField;
 
-use Illuminate\Support\Facades\Route;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Spatie\TagsField\Http\Middleware\Authorize;
 
