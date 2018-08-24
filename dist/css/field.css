@@ -9,6 +9,7 @@
   border-radius: 0.25rem;
   padding: 0.5rem 0 0.25rem 0.5rem;
 }
+
 .tag-input-tag {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -29,24 +30,30 @@
   margin-right: 0.5rem;
   margin-bottom: 0.25rem;
 }
+
 .tag-input-tag:focus-within {
   -webkit-box-shadow: 0 0 0 2px rgba(52, 144, 220, 0.5);
   box-shadow: 0 0 0 2px rgba(52, 144, 220, 0.5);
 }
+
 .tag-input-remove {
   color: #2779bd;
   font-size: 1.125rem;
   line-height: 1;
 }
+
 .tag-input-remove:first-child {
   margin-right: 0.25rem;
 }
+
 .tag-input-remove:last-child {
   margin-left: 0.25rem;
 }
+
 .tag-input-remove:focus {
   outline: 0;
 }
+
 .tag-input-text {
   -webkit-box-flex: 1;
   -ms-flex: 1;
@@ -58,3 +65,4 @@
   padding-right: 0.5rem;
   min-width: 8rem;
 }
+

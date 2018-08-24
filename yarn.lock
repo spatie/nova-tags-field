@@ -316,6 +316,13 @@ aws4@^1.2.1, aws4@^1.6.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
 
+"axios@>=0.15 <1.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+  dependencies:
+    follow-redirects "^1.3.0"
+    is-buffer "^1.1.5"
+
 babel-code-frame@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
@@ -2822,6 +2829,12 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.1.0"
 
+follow-redirects@^1.3.0:
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.7.tgz#a39e4804dacb90202bca76a9e2ac10433ca6a69a"
+  dependencies:
+    debug "^3.1.0"
+
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
@@ -2849,6 +2862,14 @@ foreach@^2.0.5:
 forever-agent@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
+
+form-backend-validation@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/form-backend-validation/-/form-backend-validation-2.3.3.tgz#1ed31e95ad031c68921bfe15c947ad5eb93b9600"
+  dependencies:
+    prettier "^1.10.2"
+  optionalDependencies:
+    axios ">=0.15 <1.0"
 
 form-data@~2.1.1:
   version "2.1.4"
@@ -3607,6 +3628,10 @@ indexof@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/indexof/-/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
 
+inflector-js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/inflector-js/-/inflector-js-1.0.1.tgz#8f2b8dae06ba8c1a846e40a196a5e132721be0e0"
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -4151,6 +4176,13 @@ laravel-mix@^1.0:
     webpack-merge "^4.1.0"
     webpack-notifier "^1.5.0"
     yargs "^8.0.1"
+
+laravel-nova@^1.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/laravel-nova/-/laravel-nova-1.0.2.tgz#35d355378518c68940feb4440d80013d2c887659"
+  dependencies:
+    form-backend-validation "^2.3.3"
+    inflector-js "^1.0.1"
 
 lazy-cache@^1.0.3:
   version "1.0.4"
@@ -5611,6 +5643,10 @@ prepend-http@^1.0.0, prepend-http@^1.0.1:
 preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
+
+prettier@^1.10.2:
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.2.tgz#0ac1c6e1a90baa22a62925f41963c841983282f9"
 
 prettier@^1.14.0, prettier@^1.7.0:
   version "1.14.0"

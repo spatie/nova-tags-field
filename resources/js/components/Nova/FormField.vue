@@ -1,47 +1,56 @@
 <template>
     <default-field :field="field">
         <template slot="field">
-            <input :id="field.name" type="text"
-                class="w-full form-control form-input form-input-bordered"
-                :class="errorClasses"
-                :placeholder="field.name"
-                v-model="value"
-            />
-
-            <p v-if="hasError" class="my-2 text-danger">
-                {{ firstError }}
-            </p>
+            <inline-tag-input
+              v-model="tags"
+              class="w-full form-control form-input form-input-bordered">
+            </inline-tag-input>
         </template>
     </default-field>
 </template>
 
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import { FormField, HandlesValidationErrors } from 'laravel-nova';
+import InlineTagInput from '../Tags/InlineTagInput'
 
 export default {
     mixins: [FormField, HandlesValidationErrors],
 
+    components: { InlineTagInput },
+
     props: ['resourceName', 'resourceId', 'field'],
+
+    data() {
+        return {
+            tags: [],
+        }
+    },
 
     methods: {
         /*
          * Set the initial, internal value for the field.
          */
         setInitialValue() {
-          this.value = this.field.value || ''
+            const tagNames = this.field.value.map(tag => tag.name.en);
+
+            this.value = tagNames;
+
+            this.tags = tagNames;
         },
 
         /**
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-          formData.append(this.field.attribute, this.value || '')
+          console.log('fill', this.tags)
+          formData.append(this.field.attribute, this.tags)
         },
 
         /**
          * Update the field's internal value.
          */
         handleChange(value) {
+            console.log('handleChange', value);
           this.value = value
         }
     }

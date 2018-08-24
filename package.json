@@ -13,6 +13,7 @@
     "devDependencies": {
         "cross-env": "^5.0.0",
         "laravel-mix": "^1.0",
+        "laravel-nova": "^1.0",
         "prettier": "^1.14.0"
     },
     "dependencies": {
