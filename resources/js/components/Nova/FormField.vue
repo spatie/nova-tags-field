@@ -2,8 +2,8 @@
     <default-field :field="field">
         <template slot="field">
             <inline-tag-input
-              v-model="tags"
-              class="w-full form-control form-input form-input-bordered">
+                v-model="tags"
+                class="w-full form-control form-input form-input-bordered">
             </inline-tag-input>
         </template>
     </default-field>
@@ -42,7 +42,6 @@ export default {
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-            console.log('fill', this.tags);
             formData.append(this.field.attribute, this.tags);
         },
 
@@ -50,7 +49,6 @@ export default {
          * Update the field's internal value.
          */
         handleChange(value) {
-            console.log('handleChange', value);
             this.value = value;
         },
     },

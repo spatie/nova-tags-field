@@ -7,6 +7,9 @@
     "parserOptions": {
         "ecmaVersion": 2017
     },
+    "globals": {
+        "Nova": true
+    },
     "env": {
         "browser": true,
         "node": true

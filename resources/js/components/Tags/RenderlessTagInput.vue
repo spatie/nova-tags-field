@@ -40,7 +40,7 @@ export default {
             this.input = '';
         },
 
-        handleBackspace(e) {
+        handleBackspace() {
             if (this.newTag.length === 0) {
                 this.$emit('update', this.tags.slice(0, -1));
             }

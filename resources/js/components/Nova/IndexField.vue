@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span v-for="tag in field.value" class="tag-input-tag">
+        <span v-for="tag in field.value" :key="tag.id" class="tag-input-tag">
             {{ tag.name }}
         </span>
     </div>
