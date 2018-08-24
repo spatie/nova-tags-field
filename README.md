@@ -2,8 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/nova-tags-field.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-tags-field)
 ![CircleCI branch](https://img.shields.io/circleci/project/github/spatie/nova-tags-field/master.svg?style=flat-square)
-[![Build Status](https://img.shields.io/travis/spatie/nova-tags-field/master.svg?style=flat-square)](https://travis-ci.org/spatie/nova-tags-field)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/nova-tags-field.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/nova-tags-field)
+[![StyleCI](https://github.styleci.io/repos/145974148/shield?branch=master)](https://github.styleci.io/repos/145974148)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/nova-tags-field.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-tags-field)
 
 This package contains a Nova field to add tags to resources. Under the hood it uses the [spatie/laravel-tags](https://docs.spatie.be/laravel-tags) package.
