@@ -27,6 +27,7 @@
                     return
                 }
                 this.$emit("update", [...this.tags, this.newTag])
+
                 this.clearInput()
             },
             clearInput() {
