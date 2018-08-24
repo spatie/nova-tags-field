@@ -7,8 +7,7 @@
 
 This package contains a Nova field to add tags to resources. Under the hood it uses the [spatie/laravel-tags](https://docs.spatie.be/laravel-tags) package.
 
-
-
+![screenshot of the tags field](https://spatie.github.io/nova-tags-field/screenshot.png)
 
 ## Installation
 
