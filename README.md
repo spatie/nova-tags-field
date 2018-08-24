@@ -5,10 +5,10 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/nova-tags-field.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/nova-tags-field)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/nova-tags-field.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-tags-field)
 
+This package contains a Nova field to add tags to resources. Under the hood it uses the [spatie/laravel-tags](https://docs.spatie.be/laravel-tags) package.
 
-This is where your description should go. Try and limit it to a paragraph or two.
 
-Add a screenshot of the tool here.
+
 
 ## Installation
 
