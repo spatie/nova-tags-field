@@ -13,10 +13,14 @@ class Tags extends Field
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
         $requestValue = $request[$requestAttribute];
-
         $tagNames = explode(',', $requestValue);
+        $tagNames = array_filter($tagNames);
 
-        $model->syncTags($tagNames);
+        $class = get_class($model);
+
+        $class::saved(function($model) use ($tagNames) {
+            $model->syncTags($tagNames);
+        });
     }
 
     public function resolveAttribute($resource, $attribute = null)
