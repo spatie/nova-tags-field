@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name=":namespace_vendor Test Suite">
+        <testsuite name="Spatie Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

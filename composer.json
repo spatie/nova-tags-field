@@ -1,6 +1,6 @@
 {
-    "name": ":vendor/:package_name",
-    "description": ":package_description",
+    "name": "spatie/nova-tags-field",
+    "description": "A tags field for Nova apps",
     "keywords": [
         "laravel",
         "nova"
@@ -11,12 +11,12 @@
             "url": "../laravel-nova"
         }
     ],
-    "homepage": "https://github.com/:vendor/:package_name",
+    "homepage": "https://github.com/spatie/nova-tags-field",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
             "role": "Developer"
         }
     ],
@@ -30,18 +30,18 @@
     },
     "autoload": {
         "psr-4": {
-            ":namespace_vendor\\:namespace_tool_name\\": "src/"
+            "Spatie\\TagsField\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":namespace_vendor\\:namespace_tool_name\\Tests\\": "tests"
+            "Spatie\\TagsField\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                ":namespace_vendor\\:namespace_tool_name\\ToolServiceProvider"
+                "Spatie\\TagsField\\TagsFieldServiceProvider"
             ]
         }
     },

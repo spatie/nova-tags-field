@@ -1,6 +1,6 @@
 <?php
 
-namespace :namespace_vendor\:namespace_tool_name;
+namespace Spatie\TagsField;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool as BaseTool;
@@ -14,8 +14,8 @@ class Tool extends BaseTool
      */
     public function boot()
     {
-        Nova::script(':package_name', __DIR__.'/../dist/js/tool.js');
-        Nova::style(':package_name', __DIR__.'/../dist/css/tool.css');
+        Nova::script('nova-tags-field', __DIR__.'/../dist/js/tool.js');
+        Nova::style('nova-tags-field', __DIR__.'/../dist/css/tool.css');
     }
 
     /**
@@ -25,6 +25,6 @@ class Tool extends BaseTool
      */
     public function renderNavigation()
     {
-        return view(':package_name::navigation');
+        return view('nova-tags-field::navigation');
     }
 }

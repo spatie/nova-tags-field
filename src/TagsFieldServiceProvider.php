@@ -1,14 +1,12 @@
 <?php
 
-namespace Spatie\TagsField;
+namespace Spatie\NovaTagsField;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Spatie\TagsField\Http\Middleware\Authorize;
 
-class ToolServiceProvider extends ServiceProvider
+class TagsFieldServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -17,19 +15,18 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova-tags-field');
+        Nova::serving(function (ServingNova $event) {
+            Nova::script('nova-tags-field', __DIR__.'/../dist/js/field.js');
+            Nova::style('nova-tags-field', __DIR__.'/../dist/css/field.css');
+        });
 
         $this->app->booted(function () {
             $this->routes();
         });
-
-        Nova::serving(function (ServingNova $event) {
-            //
-        });
     }
 
     /**
-     * Register the tool's routes.
+     * Register the field's routes.
      *
      * @return void
      */
@@ -40,8 +37,8 @@ class ToolServiceProvider extends ServiceProvider
         }
 
         Route::middleware(['nova', Authorize::class])
-                ->prefix('nova-vendor/spatie/nova-tags-field')
-                ->group(__DIR__.'/../routes/api.php');
+            ->prefix('nova-vendor/spatie/nova-tags-field')
+            ->group(__DIR__.'/../routes/api.php');
     }
 
     /**

@@ -1,9 +1,9 @@
 <?php
 
-namespace :namespace_vendor\:namespace_tool_name\Http\Controllers;
+namespace Spatie\TagsField\Http\Controllers;
 
 use Illuminate\Http\Request;
-use :namespace_vendor\:namespace_tool_name\File;
+use Spatie\TagsField\File;
 use Illuminate\Routing\Controller;
 
 class ToolController extends Controller
