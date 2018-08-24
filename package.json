@@ -13,12 +13,13 @@
     },
     "devDependencies": {
         "cross-env": "^5.0.0",
-        "laravel-mix": "^1.0",
-        "laravel-nova": "^1.0",
-        "prettier": "^1.14.2",
         "eslint": "^4.19.1",
         "eslint-config-prettier": "^2.9.0",
         "eslint-plugin-vue": "^4.4.0"
+        "laravel-mix": "^1.0",
+        "laravel-nova": "^1.0",
+        "prettier": "^1.14.2"
+
     },
     "dependencies": {
         "animated-scroll-to": "^1.2.2",
