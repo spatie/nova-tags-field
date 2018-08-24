@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\NovaTagsField;
+namespace Spatie\TagsField;
 
 use Laravel\Nova\Fields\Field;
 
-class NovaTagsField extends Field
+class Tags extends Field
 {
     /**
      * The field's component.

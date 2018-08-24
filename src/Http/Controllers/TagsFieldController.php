@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\TagsField\File;
 use Illuminate\Routing\Controller;
 
-class ToolController extends Controller
+class TagsFieldController extends Controller
 {
     public function index()
     {

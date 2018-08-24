@@ -4,7 +4,7 @@ namespace Spatie\TagsField\Tests;
 
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\TagsField\ToolServiceProvider;
+use Spatie\TagsField\TagsFieldServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -18,7 +18,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            ToolServiceProvider::class,
+            TagsFieldServiceProvider::class,
         ];
     }
 }
