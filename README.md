@@ -85,6 +85,36 @@ public function fields(Request $request)
 
 For more info on how to work with the saved tags, head over to [the docs of spatie/laravel-tags](https://docs.spatie.be/laravel-tags/).
 
+## Administering tags in Nova
+
+If you want to perform crud actions on the save tags, just create a Nova resource for it. Here's an example.
+
+```php
+namespace App\Nova;
+
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Text;
+use Spatie\Tags\Tag as TagModel;
+
+class Tag extends Resource
+{
+    public static $model = TagModel::class;
+
+    public static $title = 'name';
+
+    public static $search = [
+        'name',
+    ];
+
+    public function fields(Request $request)
+    {
+        return [
+            Text::make('Name')->sortable(),
+        ];
+    }
+}
+```
+
 ### Testing
 
 ``` bash
