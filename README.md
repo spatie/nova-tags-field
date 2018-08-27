@@ -60,9 +60,30 @@ class BlogPost extends Resource
 }
 ```
 
-Now you can view and add tags on the blog posts screen in your Nova app. Any tags will be saved in the `tags` table. 
+Now you can view and add tags on the blog posts screen in your Nova app. All tags will be saved in the `tags` table. 
 
-For more info on how to work with the save tags, head over to [the docs of spatie/laravel-tags](https://docs.spatie.be/laravel-tags/).
+## Using types
+
+The [underlying tags package](https://github.com/spatie/laravel-tags) has support for [tag types](https://docs.spatie.be/laravel-tags/v2/advanced-usage/using-types). To make your tags field save tags of a certain type just tack on the name of type when adding the field to your Nova resource.
+
+```php
+// in your Nova resource
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        
+        Tags::make('Tags')->type('my-special-type'),
+
+        // ...
+    ];
+}
+```
+
+## Working with tags
+
+For more info on how to work with the saved tags, head over to [the docs of spatie/laravel-tags](https://docs.spatie.be/laravel-tags/).
 
 ### Testing
 

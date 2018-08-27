@@ -10,6 +10,11 @@ class Tags extends Field
 {
     public $component = 'nova-tags-field';
 
+    public function type(string $type)
+    {
+        return $this->withMeta(['type' => $type]);
+    }
+
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
         $requestValue = $request[$requestAttribute];
@@ -19,7 +24,7 @@ class Tags extends Field
         $class = get_class($model);
 
         $class::saved(function($model) use ($tagNames) {
-            $model->syncTags($tagNames);
+            $model->syncTagsWithType($tagNames, $this->meta()['type'] ?? null);
         });
     }
 
