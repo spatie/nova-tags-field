@@ -23,7 +23,7 @@ class Tags extends Field
 
         $class = get_class($model);
 
-        $class::saved(function($model) use ($tagNames) {
+        $class::saved(function ($model) use ($tagNames) {
             $model->syncTagsWithType($tagNames, $this->meta()['type'] ?? null);
         });
     }
@@ -31,6 +31,7 @@ class Tags extends Field
     public function resolveAttribute($resource, $attribute = null)
     {
         $attribute = $attribute ?? 'tags';
+        
         return $resource->{$attribute}->map(function (Tag $tag) {
             return ['id' => $tag->id, 'name' => $tag->name];
         });
