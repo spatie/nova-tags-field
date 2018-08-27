@@ -28,6 +28,4 @@ class TagsFieldControllerTest extends TestCase
             ->getJson('nova-vendor/spatie/nova-tags-field')
             ->assertJsonValidationErrors('filter.containing');
     }
-
-
 }

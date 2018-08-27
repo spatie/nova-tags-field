@@ -7,6 +7,7 @@
             </inline-tag-input>
         </template>
     </default-field>
+
 </template>
 
 <script>
@@ -42,7 +43,7 @@ export default {
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-            formData.append(this.field.attribute, this.tags);
+            formData.append(this.field.attribute, this.tags.join('-----'));
         },
 
         /**

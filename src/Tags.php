@@ -13,7 +13,7 @@ class Tags extends Field
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
         $requestValue = $request[$requestAttribute];
-        $tagNames = explode(',', $requestValue);
+        $tagNames = explode('-----', $requestValue);
         $tagNames = array_filter($tagNames);
 
         $class = get_class($model);
