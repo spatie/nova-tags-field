@@ -38,7 +38,7 @@ class TagsFieldServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::middleware(['nova', Authorize::class])
+        Route::middleware(['nova', 'api', Authorize::class])
             ->prefix('nova-vendor/spatie/nova-tags-field')
             ->group(__DIR__.'/../routes/api.php');
     }
