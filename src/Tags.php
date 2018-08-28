@@ -31,7 +31,7 @@ class Tags extends Field
     public function resolveAttribute($resource, $attribute = null)
     {
         $attribute = $attribute ?? 'tags';
-        
+
         return $resource->{$attribute}->map(function (Tag $tag) {
             return ['id' => $tag->id, 'name' => $tag->name];
         });
