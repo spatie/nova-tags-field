@@ -266,8 +266,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "py-3 tags-index-field" },
     _vm._l(_vm.field.value, function(tag) {
-      return _c("span", { key: tag.id, staticClass: "tag-input-tag" }, [
+      return _c("span", { key: tag.id, staticClass: "tags-input-tag" }, [
         _vm._v("\n        " + _vm._s(tag.name) + "\n    ")
       ])
     })
@@ -364,7 +365,7 @@ var render = function() {
       "p",
       { staticClass: "text-90", attrs: { slot: "value" }, slot: "value" },
       _vm._l(_vm.field.value, function(tag) {
-        return _c("span", { key: tag.id, staticClass: "tag-input-tag" }, [
+        return _c("span", { key: tag.id, staticClass: "tags-input-tag" }, [
           _vm._v("\n            " + _vm._s(tag.name) + "\n        ")
         ])
       })
@@ -436,8 +437,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_nova__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tags_InlineTagInput__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tags_InlineTagInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Tags_InlineTagInput__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tags_InlineTagsInput__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tags_InlineTagsInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Tags_InlineTagsInput__);
 //
 //
 //
@@ -457,7 +458,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0_laravel_nova__["FormField"], __WEBPACK_IMPORTED_MODULE_0_laravel_nova__["HandlesValidationErrors"]],
 
-    components: { InlineTagInput: __WEBPACK_IMPORTED_MODULE_1__Tags_InlineTagInput___default.a },
+    components: { InlineTagsInput: __WEBPACK_IMPORTED_MODULE_1__Tags_InlineTagsInput___default.a },
 
     props: ['resourceName', 'resourceId', 'field'],
 
@@ -10630,15 +10631,73 @@ module.exports = g;
 });
 
 /***/ }),
-/* 12 */
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "default-field",
+    { attrs: { field: _vm.field } },
+    [
+      _c(
+        "template",
+        { slot: "field" },
+        [
+          _c("inline-tags-input", {
+            staticClass: "w-full form-control form-input form-input-bordered",
+            model: {
+              value: _vm.tags,
+              callback: function($$v) {
+                _vm.tags = $$v
+              },
+              expression: "tags"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-943d5404", module.exports)
+  }
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(13)
+var __vue_script__ = __webpack_require__(24)
 /* template */
-var __vue_template__ = __webpack_require__(16)
+var __vue_template__ = __webpack_require__(25)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -10655,7 +10714,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/Tags/InlineTagInput.vue"
+Component.options.__file = "resources/js/components/Tags/InlineTagsInput.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -10664,9 +10723,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6e405d78", Component.options)
+    hotAPI.createRecord("data-v-266fea6d", Component.options)
   } else {
-    hotAPI.reload("data-v-6e405d78", Component.options)
+    hotAPI.reload("data-v-266fea6d", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -10677,13 +10736,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 13 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RenderlessTagInput_vue__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RenderlessTagInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RenderlessTagInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RenderlessTagsInput_vue__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RenderlessTagsInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RenderlessTagsInput_vue__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10706,7 +10772,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        RenderlessTagInput: __WEBPACK_IMPORTED_MODULE_0__RenderlessTagInput_vue___default.a
+        RenderlessTagsInput: __WEBPACK_IMPORTED_MODULE_0__RenderlessTagsInput_vue___default.a
     },
 
     model: {
@@ -10727,13 +10793,92 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 14 */
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("renderless-tags-input", {
+    attrs: { tags: _vm.tags },
+    on: {
+      update: function(newTags) {
+        return _vm.$emit("update", newTags)
+      }
+    },
+    scopedSlots: _vm._u([
+      {
+        key: "default",
+        fn: function(ref) {
+          var tags = ref.tags
+          var removeTag = ref.removeTag
+          var removeButtonEvents = ref.removeButtonEvents
+          var inputProps = ref.inputProps
+          var inputEvents = ref.inputEvents
+          return _c(
+            "div",
+            { staticClass: "tags-input" },
+            [
+              _vm._l(tags, function(tag) {
+                return _c("span", { key: tag, staticClass: "tags-input-tag" }, [
+                  _c("span", [_vm._v(_vm._s(tag))]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    _vm._g(
+                      {
+                        staticClass: "tags-input-remove",
+                        attrs: { type: "button" }
+                      },
+                      removeButtonEvents(tag)
+                    ),
+                    [_vm._v("\n                ×\n            ")]
+                  )
+                ])
+              }),
+              _vm._v(" "),
+              _c(
+                "input",
+                _vm._g(
+                  _vm._b(
+                    {
+                      staticClass: "tags-input-text",
+                      attrs: { placeholder: "Add tag..." }
+                    },
+                    "input",
+                    inputProps,
+                    false
+                  ),
+                  inputEvents
+                )
+              )
+            ],
+            2
+          )
+        }
+      }
+    ])
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-266fea6d", module.exports)
+  }
+}
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(15)
+var __vue_script__ = __webpack_require__(27)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -10752,7 +10897,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/Tags/RenderlessTagInput.vue"
+Component.options.__file = "resources/js/components/Tags/RenderlessTagsInput.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -10761,9 +10906,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-45ea5c5a", Component.options)
+    hotAPI.createRecord("data-v-4ab6c217", Component.options)
   } else {
-    hotAPI.reload("data-v-45ea5c5a", Component.options)
+    hotAPI.reload("data-v-4ab6c217", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -10774,7 +10919,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 15 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10864,134 +11009,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
     }
 });
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("renderless-tag-input", {
-    attrs: { tags: _vm.tags },
-    on: {
-      update: function(newTags) {
-        return _vm.$emit("update", newTags)
-      }
-    },
-    scopedSlots: _vm._u([
-      {
-        key: "default",
-        fn: function(ref) {
-          var tags = ref.tags
-          var removeTag = ref.removeTag
-          var removeButtonEvents = ref.removeButtonEvents
-          var inputProps = ref.inputProps
-          var inputEvents = ref.inputEvents
-          return _c(
-            "div",
-            { staticClass: "tag-input" },
-            [
-              _vm._l(tags, function(tag) {
-                return _c("span", { key: tag, staticClass: "tag-input-tag" }, [
-                  _c("span", [_vm._v(_vm._s(tag))]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    _vm._g(
-                      {
-                        staticClass: "tag-input-remove",
-                        attrs: { type: "button" }
-                      },
-                      removeButtonEvents(tag)
-                    ),
-                    [_vm._v("×")]
-                  )
-                ])
-              }),
-              _vm._v(" "),
-              _c(
-                "input",
-                _vm._g(
-                  _vm._b(
-                    {
-                      staticClass: "tag-input-text",
-                      attrs: { placeholder: "Add tag..." }
-                    },
-                    "input",
-                    inputProps,
-                    false
-                  ),
-                  inputEvents
-                )
-              )
-            ],
-            2
-          )
-        }
-      }
-    ])
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6e405d78", module.exports)
-  }
-}
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "default-field",
-    { attrs: { field: _vm.field } },
-    [
-      _c(
-        "template",
-        { slot: "field" },
-        [
-          _c("inline-tag-input", {
-            staticClass: "w-full form-control form-input form-input-bordered",
-            model: {
-              value: _vm.tags,
-              callback: function($$v) {
-                _vm.tags = $$v
-              },
-              expression: "tags"
-            }
-          })
-        ],
-        1
-      )
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-943d5404", module.exports)
-  }
-}
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
