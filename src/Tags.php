@@ -23,7 +23,7 @@ class Tags extends Field
 
         $class = get_class($model);
 
-        $class::saved(function($model) use ($tagNames) {
+        $class::saved(function ($model) use ($tagNames) {
             $model->syncTagsWithType($tagNames, $this->meta()['type'] ?? null);
         });
     }
