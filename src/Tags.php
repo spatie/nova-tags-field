@@ -38,6 +38,6 @@ class Tags extends Field
 
         return $tags->map(function (Tag $tag) {
             return ['id' => $tag->id, 'name' => $tag->name];
-        });
+        })->values();
     }
 }
