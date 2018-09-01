@@ -23,15 +23,21 @@ class Tags extends Field
 
         $class = get_class($model);
 
-        $class::saved(function($model) use ($tagNames) {
+        $class::saved(function ($model) use ($tagNames) {
             $model->syncTagsWithType($tagNames, $this->meta()['type'] ?? null);
         });
     }
 
     public function resolveAttribute($resource, $attribute = null)
     {
-        return $resource->tags->map(function (Tag $tag) {
+        $tags = $resource->tags;
+
+        if (array_has($this->meta(), 'type')) {
+            $tags = $tags->where('type', $this->meta()['type']);
+        }
+
+        return $tags->map(function (Tag $tag) {
             return ['id' => $tag->id, 'name' => $tag->name];
-        });
+        })->values();
     }
 }
