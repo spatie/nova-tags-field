@@ -3,7 +3,8 @@
         <template slot="field">
             <component
                 :is="component"
-                :field="field"
+                :name="field.name"
+                :type="field.type"
                 v-model="tags"
             ></component>
         </template>

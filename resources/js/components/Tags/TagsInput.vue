@@ -17,6 +17,10 @@ export default {
         };
     },
 
+    created() {
+        this.throttledGetSuggested = window._.throttle(this.getSuggested, 400);
+    },
+
     computed: {
         newTag() {
             return this.input.trim();
@@ -54,7 +58,7 @@ export default {
             }
         },
 
-        getSuggestions() {
+        getSuggested() {
             if (!this.input) {
                 this.suggestions = [];
 
@@ -102,7 +106,7 @@ export default {
                 input: e => {
                     this.input = e.target.value;
 
-                    this.getSuggestions();
+                    this.throttledGetSuggested();
                 },
                 keydown: e => {
                     if (e.key === 'Backspace' && this.removeOnBackspace) {

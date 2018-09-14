@@ -1,17 +1,11 @@
 <template>
-    <tag-names :tags="field.value" class="py-3 tags-index-field"></tag-names>
+    <p class="py-3 tags-index-field" v-text="field.value.join(', ')"></p>
 </template>
 
 <script>
-import TagNames from '../Tags/TagNames';
-
 export default {
     inheritAttrs: false,
 
     props: ['field'],
-
-    components: {
-        TagNames,
-    },
 };
 </script>

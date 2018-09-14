@@ -17,7 +17,7 @@ class TagsFieldController extends Controller
         }
 
         if ($request->has('filter.type')) {
-            $query->containing($request['filter']['type']);
+            $query->where('type', $request['filter']['type']);
         }
 
         return $query->get()->map(function (Tag $tag) {

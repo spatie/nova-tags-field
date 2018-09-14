@@ -1,8 +1,8 @@
 <template>
     <select
-        v-if="availableTags.length"
+        v-if="loaded"
         class="w-full form-control form-select"
-        :id="field.name"
+        :id="name"
         :value="tags[0]"
         @input="$emit('input', [$event.target.value])"
     >
@@ -11,23 +11,24 @@
         </option>
         <option
             v-for="tag in availableTags"
-            :key="tag.name"
-            :value="tag.name"
+            :key="tag"
+            :value="tag"
         >
-            {{ tag.name }}
+            {{ tag }}
         </option>
     </select>
 </template>
 
 <script>
 export default {
-    props: ['field', 'tags'],
+    props: ['tags', 'type', 'name'],
 
     model: {
         prop: 'tags',
     },
 
     data: () => ({
+        loaded: false,
         availableTags: [],
     }),
 
@@ -37,12 +38,14 @@ export default {
 
     methods: {
         getAvailableTags() {
-            const queryString = this.field.type
-                ? `filter[type]=${this.field.type}`
+            const queryString = this.type
+                ? `filter[type]=${this.type}`
                 : '';
 
             axios.get(`/nova-vendor/spatie/nova-tags-field?${queryString}`).then(response => {
                 this.availableTags = response.data;
+
+                this.loaded = true;
             });
         },
     },

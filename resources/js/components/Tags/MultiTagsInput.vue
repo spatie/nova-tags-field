@@ -1,5 +1,5 @@
 <template>
-    <tags-input :tags="tags" @input="handleInput">
+    <tags-input :tags="tags" :type="type" @input="handleInput">
         <div slot-scope="{ tags, removeTag, inputProps, inputEvents, suggestions, insertSuggestion }">
             <div class="tags-input w-full form-control form-input form-input-bordered flex items-center" @click="focusInput">
                 <span v-for="tag in tags" :key="tag" class="tags-input-tag mr-1">
@@ -39,7 +39,7 @@
 import TagsInput from './TagsInput.vue';
 
 export default {
-    props: ['field', 'tags'],
+    props: ['tags', 'type'],
 
     model: {
         prop: 'tags',
