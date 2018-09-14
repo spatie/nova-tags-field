@@ -1,61 +1,58 @@
-.tag-input {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  background-color: #fff;
-  border-width: 1px;
-  border-radius: 0.25rem;
-  padding: 0.5rem 0 0.25rem 0.5rem;
-  height: auto;
+.tags-index-field {
+    line-height: 1.5;
 }
-.tag-input-tag {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  line-height: 1;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 0.875rem;
-  background-color: #bcdefa;
-  color: #1c3d5a;
-  border-radius: 0.25rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding: 0.25rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.25rem;
+
+.tags-input {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0 0.25rem 0.5rem;
+    height: auto;
 }
-.tag-input-tag:focus-within {
-  -webkit-box-shadow: 0 0 0 2px rgba(52, 144, 220, 0.5);
-  box-shadow: 0 0 0 2px rgba(52, 144, 220, 0.5);
+
+.tags-input-tag {
+    display: inline-flex;
+    line-height: 1;
+    align-items: center;
+    font-size: 0.875rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 0.25rem;
+    user-select: none;
+    padding: 0.25rem;
+    margin-right: 0.25rem;
 }
-.tag-input-remove {
-  color: #2779bd;
-  font-size: 1.125rem;
-  line-height: 1;
+
+.tags-input-tag:focus-within {
+    box-shadow: 0 0 0 2px rgba(52, 144, 220, 0.5);
 }
-.tag-input-remove:first-child {
-  margin-right: 0.25rem;
+
+.tags-input-remove {
+    color: #2779bd;
+    font-size: 1.125rem;
+    line-height: 1;
 }
-.tag-input-remove:last-child {
-  margin-left: 0.25rem;
+
+.tags-input-remove:first-child {
+    margin-right: 0.25rem;
 }
-.tag-input-remove:focus {
-  outline: 0;
+
+.tags-input-remove:last-child {
+    margin-left: 0.25rem;
 }
-.tag-input-text {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  outline: 0;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  margin-bottom: 0.25rem;
-  padding-right: 0.5rem;
-  min-width: 8rem;
+
+.tags-input-remove:focus {
+    outline: none;
+}
+
+.tags-input-text {
+    flex: 1;
+    outline: 0;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding-right: 0.5rem;
+    min-width: 8rem;
 }

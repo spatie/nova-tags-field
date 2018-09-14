@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <span v-for="tag in field.value" :key="tag.id" class="tag-input-tag">
+    <div class="py-3 tags-index-field">
+        <span v-for="tag in field.value" :key="tag.id" class="tags-input-tag">
             {{ tag.name }}
         </span>
     </div>

@@ -1,10 +1,10 @@
 <template>
     <default-field :field="field">
         <template slot="field">
-            <inline-tag-input
+            <inline-tags-input
                 v-model="tags"
                 class="w-full form-control form-input form-input-bordered">
-            </inline-tag-input>
+            </inline-tags-input>
         </template>
     </default-field>
 
@@ -12,12 +12,12 @@
 
 <script>
 import { FormField, HandlesValidationErrors } from 'laravel-nova';
-import InlineTagInput from '../Tags/InlineTagInput';
+import InlineTagsInput from '../Tags/InlineTagsInput';
 
 export default {
     mixins: [FormField, HandlesValidationErrors],
 
-    components: { InlineTagInput },
+    components: { InlineTagsInput },
 
     props: ['resourceName', 'resourceId', 'field'],
 
