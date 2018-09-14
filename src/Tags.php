@@ -29,7 +29,7 @@ class Tags extends Field
 
     public function single(bool $single = true)
     {
-        return $this->withMeta(['multiple' => !$single]);
+        return $this->withMeta(['multiple' => ! $single]);
     }
 
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
