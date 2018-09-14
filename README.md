@@ -81,6 +81,27 @@ public function fields(Request $request)
 }
 ```
 
+## Allowing only one tag
+
+If the user is only allowed to select one tag for your resource you can call the `single` method.
+
+```php
+// in your Nova resource
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        
+        Tags::make('Tags')->single(),
+
+        // ...
+    ];
+}
+```
+
+The field will be rendered as a select form element. It will be populated by the names of the tags already saved.
+
 ## Working with tags
 
 For more info on how to work with the saved tags, head over to [the docs of spatie/laravel-tags](https://docs.spatie.be/laravel-tags/).
