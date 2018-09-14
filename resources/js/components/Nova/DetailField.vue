@@ -8,6 +8,8 @@
 import TagNames from '../Tags/TagNames';
 
 export default {
+    inheritAttrs: false,
+
     props: ['field'],
 
     components: {

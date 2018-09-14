@@ -11,16 +11,20 @@ import { FormField, HandlesValidationErrors } from 'laravel-nova';
 import InlineTagsInput from '../Tags/InlineTagsInput';
 
 export default {
+    inheritAttrs: false,
+
     mixins: [FormField, HandlesValidationErrors],
 
-    components: { InlineTagsInput },
-
-    props: ['resourceName', 'resourceId', 'field'],
+    props: ['field'],
 
     data() {
         return {
             tags: [],
         };
+    },
+
+    components: {
+        InlineTagsInput,
     },
 
     methods: {
