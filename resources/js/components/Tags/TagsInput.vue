@@ -2,7 +2,6 @@
 export default {
     model: {
         prop: 'tags',
-        event: 'update',
     },
 
     props: {
@@ -24,14 +23,14 @@ export default {
 
     methods: {
         removeTag(tag) {
-            this.$emit('update', this.tags.filter(t => t !== tag));
+            this.$emit('input', this.tags.filter(t => t !== tag));
         },
         addTag() {
             if (this.newTag.length === 0 || this.tags.includes(this.newTag)) {
                 return;
             }
 
-            this.$emit('update', [...this.tags, this.newTag]);
+            this.$emit('input', [...this.tags, this.newTag]);
 
             this.clearInput();
         },
@@ -42,7 +41,7 @@ export default {
 
         handleBackspace() {
             if (this.newTag.length === 0) {
-                this.$emit('update', this.tags.slice(0, -1));
+                this.$emit('input', this.tags.slice(0, -1));
             }
         },
     },

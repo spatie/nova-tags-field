@@ -1,13 +1,9 @@
 <template>
     <default-field :field="field">
         <template slot="field">
-            <inline-tags-input
-                v-model="tags"
-                class="w-full form-control form-input form-input-bordered">
-            </inline-tags-input>
+            <inline-tags-input v-model="tags"></inline-tags-input>
         </template>
     </default-field>
-
 </template>
 
 <script>

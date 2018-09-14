@@ -1,15 +1,17 @@
 <template>
     <panel-item :field="field">
-        <p slot="value" class="text-90">
-            <span v-for="tag in field.value" :key="tag.id" class="tags-input-tag">
-                {{ tag.name }}
-            </span>
-        </p>
+        <tag-names slot="value" :tags="field.value"></tag-names>
     </panel-item>
 </template>
 
 <script>
+import TagNames from '../Tags/TagNames';
+
 export default {
-    props: ['resource', 'resourceName', 'resourceId', 'field'],
+    props: ['field'],
+
+    components: {
+        TagNames,
+    },
 };
 </script>

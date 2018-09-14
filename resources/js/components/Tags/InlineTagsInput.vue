@@ -1,9 +1,9 @@
 <template>
-    <renderless-tags-input
-        :tags="tags"
-        @update="(newTags) => $emit('update', newTags)"
-    >
-        <div class="tags-input" slot-scope="{ tags, removeTag, removeButtonEvents, inputProps, inputEvents }">
+    <tags-input :tags="tags" @input="$emit('input', $event)">
+        <div
+            class="tags-input w-full form-control form-input form-input-bordered flex items-center"
+            slot-scope="{ tags, removeTag, removeButtonEvents, inputProps, inputEvents }"
+        >
             <span v-for="tag in tags" :key="tag" class="tags-input-tag">
                 <span>{{ tag }}</span>
                 <button
@@ -14,25 +14,26 @@
                     &times;
                 </button>
             </span>
-            <input class="tags-input-text" placeholder="Add tag..."
+            <input
+                class="tags-input-text"
+                placeholder="Add tag..."
                 v-bind="inputProps"
                 v-on="inputEvents"
             >
         </div>
-    </renderless-tags-input>
+    </tags-input>
 </template>
 
 <script>
-import RenderlessTagsInput from './RenderlessTagsInput.vue';
+import TagsInput from './TagsInput.vue';
 
 export default {
     components: {
-        RenderlessTagsInput,
+        TagsInput,
     },
 
     model: {
         prop: 'tags',
-        event: 'update',
     },
 
     props: {
