@@ -14,7 +14,7 @@ class Tags extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->withMeta(['multiple' => true]);
+        $this->multiple();
     }
 
     public function type(string $type)
