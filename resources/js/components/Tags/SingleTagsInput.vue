@@ -38,15 +38,15 @@ export default {
 
     methods: {
         getAvailableTags() {
-            const queryString = this.type
-                ? `filter[type]=${this.type}`
-                : '';
+            const queryString = this.type ? `filter[type]=${this.type}` : '';
 
-            axios.get(`/nova-vendor/spatie/nova-tags-field?${queryString}`).then(response => {
-                this.availableTags = response.data;
+            window.axios
+                .get(`/nova-vendor/spatie/nova-tags-field?${queryString}`)
+                .then(response => {
+                    this.availableTags = response.data;
 
-                this.loaded = true;
-            });
+                    this.loaded = true;
+                });
         },
     },
 };

@@ -36,9 +36,7 @@ export default {
 
     computed: {
         component() {
-            return this.field.multiple
-                ? 'multi-tags-input'
-                : 'single-tags-input';
+            return this.field.multiple ? 'multi-tags-input' : 'single-tags-input';
         },
     },
 

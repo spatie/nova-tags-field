@@ -69,19 +69,21 @@ export default {
                 ? `filter[type]=${this.type}&filter[containing]=${this.input}`
                 : `filter[containing]=${this.input}`;
 
-            axios.get(`/nova-vendor/spatie/nova-tags-field?${queryString}`).then(response => {
-                // If the input was cleared by the time the request finished,
-                // clear the suggestions too.
-                if (!this.input) {
-                    this.suggestions = [];
+            window.axios
+                .get(`/nova-vendor/spatie/nova-tags-field?${queryString}`)
+                .then(response => {
+                    // If the input was cleared by the time the request finished,
+                    // clear the suggestions too.
+                    if (!this.input) {
+                        this.suggestions = [];
 
-                    return;
-                }
+                        return;
+                    }
 
-                this.suggestions = response.data.filter(suggestion => {
-                    return !this.tags.find(tag => tag === suggestion);
+                    this.suggestions = response.data.filter(suggestion => {
+                        return !this.tags.find(tag => tag === suggestion);
+                    });
                 });
-            });
         },
 
         insertSuggestion(suggestion) {
