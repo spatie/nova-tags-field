@@ -10,10 +10,6 @@ class TagsFieldController extends Controller
 {
     public function index(Request $request)
     {
-        $request->validate([
-           'filter.containing' => 'required',
-        ]);
-
         $query = Tag::query();
 
         if ($request->has('filter.containing')) {
@@ -24,8 +20,8 @@ class TagsFieldController extends Controller
             $query->containing($request['filter']['type']);
         }
 
-        return $query
-            ->take(10)
-            ->get();
+        return $query->get()->map(function (Tag $tag) {
+            return $tag->name;
+        });
     }
 }

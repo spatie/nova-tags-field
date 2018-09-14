@@ -10,9 +10,26 @@ class Tags extends Field
 {
     public $component = 'nova-tags-field';
 
+    public function __construct($name, $attribute = null, $resolveCallback = null)
+    {
+        parent::__construct($name, $attribute, $resolveCallback);
+
+        $this->withMeta(['multiple' => true]);
+    }
+
     public function type(string $type)
     {
         return $this->withMeta(['type' => $type]);
+    }
+
+    public function multiple(bool $multiple = true)
+    {
+        return $this->withMeta(['multiple' => $multiple]);
+    }
+
+    public function single(bool $single = true)
+    {
+        return $this->withMeta(['multiple' => !$single]);
     }
 
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
@@ -37,7 +54,7 @@ class Tags extends Field
         }
 
         return $tags->map(function (Tag $tag) {
-            return ['id' => $tag->id, 'name' => $tag->name];
+            return $tag->name;
         })->values();
     }
 }

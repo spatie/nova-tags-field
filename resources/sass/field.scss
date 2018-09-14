@@ -14,7 +14,6 @@
     display: inline-flex;
     font-size: 0.875rem;
     line-height: 1;
-    margin-right: 0.25rem;
     padding: 0.125rem 0.375rem;
     user-select: none;
 }
@@ -33,4 +32,24 @@
     margin-left: 0.25rem;
     min-width: 8rem;
     outline: 0;
+}
+
+.tags-input-suggestions {
+    display: flex;
+    list-style: none;
+    margin-top: 0.5rem;
+    padding: 0;
+}
+
+.tags-input-suggestions li {
+    margin-right: 0.5rem;
+}
+
+.tags-input-suggestions .tags-input-tag {
+    opacity: 0.5;
+}
+
+.tags-input-suggestions .tags-input-tag:focus {
+    outline: none;
+    opacity: 1;
 }

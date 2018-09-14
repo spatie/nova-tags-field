@@ -1,14 +1,19 @@
 <template>
     <default-field :field="field">
         <template slot="field">
-            <inline-tags-input v-model="tags"></inline-tags-input>
+            <component
+                :is="component"
+                :field="field"
+                v-model="tags"
+            ></component>
         </template>
     </default-field>
 </template>
 
 <script>
+import MultiTagsInput from '../Tags/MultiTagsInput';
+import SingleTagsInput from '../Tags/SingleTagsInput';
 import { FormField, HandlesValidationErrors } from 'laravel-nova';
-import InlineTagsInput from '../Tags/InlineTagsInput';
 
 export default {
     inheritAttrs: false,
@@ -19,36 +24,28 @@ export default {
 
     data() {
         return {
-            tags: [],
+            tags: this.field.value,
         };
     },
 
     components: {
-        InlineTagsInput,
+        MultiTagsInput,
+        SingleTagsInput,
+    },
+
+    computed: {
+        component() {
+            return this.field.multiple
+                ? 'multi-tags-input'
+                : 'single-tags-input';
+        },
     },
 
     methods: {
-        /*
-         * Set the initial, internal value for the field.
-         */
-        setInitialValue() {
-            const tagNames = this.field.value.map(tag => tag.name);
-
-            this.value = tagNames;
-
-            this.tags = tagNames;
-        },
-
-        /**
-         * Fill the given FormData object with the field's internal value.
-         */
         fill(formData) {
             formData.append(this.field.attribute, this.tags.join('-----'));
         },
 
-        /**
-         * Update the field's internal value.
-         */
         handleChange(value) {
             this.value = value;
         },
