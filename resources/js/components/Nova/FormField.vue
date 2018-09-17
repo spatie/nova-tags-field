@@ -5,6 +5,7 @@
                 :is="component"
                 :name="field.name"
                 :type="field.type"
+                :limit="field.limitSuggestions"
                 v-model="tags"
             ></component>
         </template>

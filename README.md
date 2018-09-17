@@ -62,6 +62,20 @@ class BlogPost extends Resource
 
 Now you can view and add tags on the blog posts screen in your Nova app. All tags will be saved in the `tags` table. 
 
+## Limiting suggestions
+
+By default a tags field will display a maximum of 5 suggestions when typing into it. If you don't want to display any suggestions, tag on `withoutSuggestions()`.
+
+```php
+Tags::make('Tags')->withoutSuggestions(),
+```
+
+You can change the number of suggestions with `limitSuggestions()`.
+
+```php
+Tags::make('Tags')->limitSuggestions($maxNumberOfSuggestions),
+```
+
 ## Using types
 
 The [underlying tags package](https://github.com/spatie/laravel-tags) has support for [tag types](https://docs.spatie.be/laravel-tags/v2/advanced-usage/using-types). To make your tags field save tags of a certain type just tack on the name of type when adding the field to your Nova resource.

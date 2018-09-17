@@ -57,7 +57,7 @@ export default {
         handleInput(tags) {
             this.$emit('input', tags);
 
-            // Re-focus the input when a suggestion was inserted
+            // Re-focus the input after a suggestion was inserted
             this.focusInput();
         },
     },

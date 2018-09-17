@@ -3,6 +3,7 @@ export default {
     props: {
         tags: { required: true },
         type: { default: null },
+        limitSuggestions: { required: true },
         removeOnBackspace: { default: true },
     },
 
@@ -65,9 +66,17 @@ export default {
                 return;
             }
 
-            const queryString = this.type
-                ? `filter[type]=${this.type}&filter[containing]=${this.input}`
-                : `filter[containing]=${this.input}`;
+            if (this.limitSuggestions === 0) {
+                this.suggestions = [];
+
+                return;
+            }
+
+            let queryString = `?filter[containing]=${this.input}&limit=${this.limitSuggestions}`
+
+            if (this.type) {
+                queryString += `&filter[type]=${this.type}`
+            }
 
             window.axios
                 .get(`/nova-vendor/spatie/nova-tags-field?${queryString}`)
