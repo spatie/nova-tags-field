@@ -5,7 +5,7 @@
                 :is="component"
                 :name="field.name"
                 :type="field.type"
-                :limit="field.suggestionLimit"
+                :suggestion-limit="field.suggestionLimit"
                 v-model="tags"
             ></component>
         </template>
