@@ -79,7 +79,7 @@ export default {
             }
 
             window.axios
-                .get(`/nova-vendor/spatie/nova-tags-field?${queryString}`)
+                .get(`/nova-vendor/spatie/nova-tags-field${queryString}`)
                 .then(response => {
                     // If the input was cleared by the time the request finished,
                     // clear the suggestions too.
