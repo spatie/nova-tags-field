@@ -72,10 +72,10 @@ export default {
                 return;
             }
 
-            let queryString = `?filter[containing]=${this.input}&limit=${this.limitSuggestions}`
+            let queryString = `?filter[containing]=${this.input}&limit=${this.limitSuggestions}`;
 
             if (this.type) {
-                queryString += `&filter[type]=${this.type}`
+                queryString += `&filter[type]=${this.type}`;
             }
 
             window.axios
