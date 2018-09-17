@@ -3,7 +3,7 @@ export default {
     props: {
         tags: { required: true },
         type: { default: null },
-        limitSuggestions: { required: true },
+        suggestionLimit: { required: true },
         removeOnBackspace: { default: true },
     },
 
@@ -66,13 +66,13 @@ export default {
                 return;
             }
 
-            if (this.limitSuggestions === 0) {
+            if (this.suggestionLimit === 0) {
                 this.suggestions = [];
 
                 return;
             }
 
-            let queryString = `?filter[containing]=${this.input}&limit=${this.limitSuggestions}`;
+            let queryString = `?filter[containing]=${this.input}&limit=${this.suggestionLimit}`;
 
             if (this.type) {
                 queryString += `&filter[type]=${this.type}`;

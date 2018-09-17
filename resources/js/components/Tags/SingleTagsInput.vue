@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    props: ['tags', 'type', 'name', 'limitSuggestions'],
+    props: ['tags', 'type', 'name', 'suggestionLimit'],
 
     model: {
         prop: 'tags',
