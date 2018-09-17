@@ -14,7 +14,7 @@ class Tags extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->withMeta(['multiple' => true]);
+        $this->multiple();
     }
 
     public function type(string $type)
@@ -24,12 +24,42 @@ class Tags extends Field
 
     public function multiple(bool $multiple = true)
     {
-        return $this->withMeta(['multiple' => $multiple]);
+        $this->withMeta([
+            'multiple' => $multiple,
+            'suggestionLimit' => 5,
+        ]);
+
+        if (! $this->meta['multiple']) {
+            $this->doNotLimitSuggestions();
+        }
+
+        return $this;
     }
 
     public function single(bool $single = true)
     {
-        return $this->withMeta(['multiple' => ! $single]);
+        $this->withMeta(['multiple' => ! $single]);
+
+        if (! $this->meta['multiple']) {
+            $this->doNotLimitSuggestions();
+        }
+
+        return $this;
+    }
+
+    public function withoutSuggestions()
+    {
+        return $this->limitSuggestions(0);
+    }
+
+    public function limitSuggestions(int $maxNumberOfSuggestions)
+    {
+        return $this->withMeta(['suggestionLimit', $maxNumberOfSuggestions]);
+    }
+
+    public function doNotLimitSuggestions()
+    {
+        return $this->limitSuggestions(9999);
     }
 
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)

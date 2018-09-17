@@ -20,6 +20,14 @@ class TagsFieldController extends Controller
             $query->where('type', $request['filter']['type']);
         }
 
+        if ($request->has('filter.type')) {
+            $query->where('type', $request['filter']['type']);
+        }
+
+        if ($request->has('limit')) {
+            $query->limit($request['limit']);
+        }
+
         return $query->get()->map(function (Tag $tag) {
             return $tag->name;
         });

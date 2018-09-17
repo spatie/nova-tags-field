@@ -3,6 +3,7 @@ export default {
     props: {
         tags: { required: true },
         type: { default: null },
+        suggestionLimit: { required: true },
         removeOnBackspace: { default: true },
     },
 
@@ -65,25 +66,31 @@ export default {
                 return;
             }
 
-            const queryString = this.type
-                ? `filter[type]=${this.type}&filter[containing]=${this.input}`
-                : `filter[containing]=${this.input}`;
+            if (this.suggestionLimit === 0) {
+                this.suggestions = [];
 
-            window.axios
-                .get(`/nova-vendor/spatie/nova-tags-field?${queryString}`)
-                .then(response => {
-                    // If the input was cleared by the time the request finished,
-                    // clear the suggestions too.
-                    if (!this.input) {
-                        this.suggestions = [];
+                return;
+            }
 
-                        return;
-                    }
+            let queryString = `?filter[containing]=${this.input}&limit=${this.suggestionLimit}`;
 
-                    this.suggestions = response.data.filter(suggestion => {
-                        return !this.tags.find(tag => tag === suggestion);
-                    });
+            if (this.type) {
+                queryString += `&filter[type]=${this.type}`;
+            }
+
+            window.axios.get(`/nova-vendor/spatie/nova-tags-field${queryString}`).then(response => {
+                // If the input was cleared by the time the request finished,
+                // clear the suggestions too.
+                if (!this.input) {
+                    this.suggestions = [];
+
+                    return;
+                }
+
+                this.suggestions = response.data.filter(suggestion => {
+                    return !this.tags.find(tag => tag === suggestion);
                 });
+            });
         },
 
         insertSuggestion(suggestion) {
