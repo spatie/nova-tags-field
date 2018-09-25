@@ -41,7 +41,7 @@ Next you can use the `Spatie\TagsField\Tags` field in your Nova resource:
 ```php
 namespace App\Nova;
 
-// ...
+use Spatie\TagsField\Tags;
 
 class BlogPost extends Resource
 {
