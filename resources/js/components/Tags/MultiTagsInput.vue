@@ -20,7 +20,7 @@
                 <input
                     ref="input"
                     class="tags-input-text"
-                    placeholder="Add tag..."
+                    :placeholder="__('Add tag...')"
                     v-bind="inputProps"
                     v-on="inputEvents"
                 >
