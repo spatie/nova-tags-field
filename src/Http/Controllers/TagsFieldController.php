@@ -8,16 +8,17 @@ use Illuminate\Routing\Controller;
 
 class TagsFieldController extends Controller
 {
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
     public function index(Request $request)
     {
         $query = Tag::query();
 
         if ($request->has('filter.containing')) {
             $query->containing($request['filter']['containing']);
-        }
-
-        if ($request->has('filter.type')) {
-            $query->where('type', $request['filter']['type']);
         }
 
         if ($request->has('filter.type')) {
