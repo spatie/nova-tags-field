@@ -11,7 +11,7 @@ This package contains a Nova field to add tags to resources. Under the hood it u
 
 ## Requirements
 
-This Nova field requires a database that supports json fields such as MySQL 5.7.8 or higher.
+This Nova field requires MySQL 5.7.8 or higher.
 
 ## Installation
 
