@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 1.1.2 - 2018-12-10
+
+- fix `limitSuggestions`
+
 ## 1.1.1 - 2018-10-10
 
 - the `Add Tag...` label is now translatable
