@@ -54,7 +54,7 @@ class Tags extends Field
 
     public function limitSuggestions(int $maxNumberOfSuggestions)
     {
-        return $this->withMeta(['suggestionLimit', $maxNumberOfSuggestions]);
+        return $this->withMeta(['suggestionLimit' => $maxNumberOfSuggestions]);
     }
 
     public function doNotLimitSuggestions()
