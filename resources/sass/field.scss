@@ -58,6 +58,10 @@
     opacity: 0.5;
 }
 
+.tags-input-suggestions .tags-input-tag.tags-input-add {
+    font-weight: bold;
+}
+
 .tags-input-suggestions .tags-input-tag:focus {
     outline: none;
     opacity: 1;

@@ -5,7 +5,7 @@
       :suggestion-limit="suggestionLimit"
       @input="handleInput"
     >
-        <div slot-scope="{ tags, removeTag, inputProps, inputEvents, suggestions, insertSuggestion }">
+        <div slot-scope="{ tags, addTag, removeTag, isNewTag, inputProps, inputEvents, suggestions, insertSuggestion }">
             <div class="tags-input w-full form-control form-input form-input-bordered flex items-center" @click="focusInput">
                 <span v-for="tag in tags" :key="tag" class="tags-input-tag mr-1">
                     <span>{{ tag }}</span>
@@ -25,8 +25,17 @@
                     v-on="inputEvents"
                 >
             </div>
-            <ul v-if="suggestions.length" class="tags-input-suggestions">
-                <li v-for="suggestion in suggestions" :key="suggestion" class="mr-1">
+            <ul class="tags-input-suggestions">
+                <li v-if="isNewTag()">
+                    <button
+                        class="tags-input-tag tags-input-add mr-2"
+                        @mousedown.prevent
+                        @click.prevent="addTag"
+                    >
+                        {{ __('New: ') + inputProps.value }}
+                    </button>
+                </li>
+                <li v-if="suggestions.length" v-for="suggestion in suggestions" :key="suggestion" class="mr-1">
                     <button
                         class="tags-input-tag"
                         @mousedown.prevent
