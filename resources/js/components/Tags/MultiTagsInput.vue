@@ -35,15 +35,17 @@
                         {{ inputProps.value }}
                     </button>
                 </li>
-                <li v-if="suggestions.length" v-for="suggestion in suggestions" :key="suggestion" class="mr-1">
-                    <button
-                        class="tags-input-tag"
-                        @mousedown.prevent
-                        @click.prevent="insertSuggestion(suggestion)"
-                    >
-                        {{ suggestion }}
-                    </button>
-                </li>
+                <template v-if="suggestions.length">
+                    <li v-for="suggestion in suggestions" :key="suggestion" class="mr-1">
+                        <button
+                            class="tags-input-tag"
+                            @mousedown.prevent
+                            @click.prevent="insertSuggestion(suggestion)"
+                        >
+                            {{ suggestion }}
+                        </button>
+                    </li>
+                </template>
             </ul>
         </div>
     </tags-input>
