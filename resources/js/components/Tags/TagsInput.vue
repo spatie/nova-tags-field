@@ -47,10 +47,6 @@ export default {
             this.$emit('input', tag);
         },
 
-        isNewTag() {
-            return this.input.length && !this.suggestions.includes(this.input)
-        },
-
         clearInput() {
             this.input = '';
 
@@ -110,7 +106,6 @@ export default {
             addTag: this.addTag,
             removeTag: this.removeTag,
             selectTag: this.selectTag,
-            isNewTag: this.isNewTag,
             suggestions: this.suggestions,
             insertSuggestion: this.insertSuggestion,
             inputProps: {
