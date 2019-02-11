@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 1.1.3 - 2019-02-10
+
+- fix for displaying errors
+
 ## 1.1.2 - 2018-12-10
 
 - fix `limitSuggestions`
