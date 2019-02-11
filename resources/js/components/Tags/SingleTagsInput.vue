@@ -2,6 +2,7 @@
     <select
         v-if="loaded"
         class="w-full form-control form-select"
+        :class="{ 'border-danger': errors.has(name) }"
         :id="name"
         :value="tags[0]"
         @input="$emit('input', [$event.target.value])"
@@ -21,7 +22,7 @@
 
 <script>
 export default {
-    props: ['tags', 'type', 'name', 'suggestionLimit'],
+    props: ['tags', 'type', 'name', 'suggestionLimit', 'errors'],
 
     model: {
         prop: 'tags',
