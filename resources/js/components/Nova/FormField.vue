@@ -1,11 +1,12 @@
 <template>
-    <default-field :field="field">
+    <default-field :field="field" :errors="errors">
         <template slot="field">
             <component
                 :is="component"
-                :name="field.name"
+                :name="field.attribute"
                 :type="field.type"
                 :suggestion-limit="field.suggestionLimit"
+                :errors="errors"
                 v-model="tags"
             ></component>
         </template>
