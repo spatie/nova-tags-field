@@ -7,8 +7,8 @@
     ],
     "repositories": [
         {
-            "type": "path",
-            "url": "../laravel-nova"
+            "type": "composer",
+            "url": "https://nova.laravel.com"
         }
     ],
     "homepage": "https://github.com/spatie/nova-tags-field",
@@ -22,13 +22,13 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel/nova": "*",
-        "spatie/laravel-tags": "^2.2"
+        "laravel/nova": "^2.0",
+        "spatie/laravel-tags": "^2.3"
     },
     "require-dev": {
         "mockery/mockery": "^1.1",
-        "orchestra/testbench": "^3.6",
-        "phpunit/phpunit": "7.1"
+        "orchestra/testbench": "^3.8",
+        "phpunit/phpunit": "8.0"
     },
     "autoload": {
         "psr-4": {
