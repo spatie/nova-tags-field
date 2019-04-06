@@ -125,11 +125,9 @@ export default {
                         e.preventDefault();
                         this.addTag();
                     }
-                    if(e.key === "ArrowDown" && this.suggestions.length > 0) {
-                        if(this.suggestions.length === 1) {
-                            this.input = this.suggestions[0];
-                            this.addTag();
-                        }
+                    if(e.key === "ArrowDown" && this.suggestions.length === 1) {
+                        this.input = this.suggestions[0];
+                        this.addTag();
                     }
                 },
             },
