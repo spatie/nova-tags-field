@@ -26,7 +26,7 @@ class Tags extends Field
     {
         return $this->displayUsing(function ($tags) use ($class) {
             return $tags->map(function (Tag $tag) use ($class) {
-                $href = Nova::path() . '/resources/tags/' . $tag->id;
+                $href = Nova::path().'/resources/tags/'.$tag->id;
 
                 return "<a href=\"$href\" class=\"$class\">$tag->name</a>";
             });
