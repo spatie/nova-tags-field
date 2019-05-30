@@ -2,8 +2,8 @@
 
 namespace Spatie\TagsField\Tests;
 
-use Laravel\Nova\Resource;
 use Spatie\Tags\Tag;
+use Laravel\Nova\Resource;
 use Spatie\TagsField\Tags;
 
 class TagsFieldControllerTest extends TestCase
@@ -81,6 +81,6 @@ class TagsFieldControllerTest extends TestCase
     }
 }
 
-abstract class TagResource extends Resource {
-
+abstract class TagResource extends Resource
+{
 }
