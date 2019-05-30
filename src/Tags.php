@@ -22,6 +22,17 @@ class Tags extends Field
         return $this->withMeta(['type' => $type]);
     }
 
+    public function withLinkToTagResource(string $class = 'no-underline dim text-primary font-bold')
+    {
+        return $this->displayUsing(function ($tags) use ($class) {
+            return $tags->map(function (Tag $tag) use ($class) {
+                $href = Nova::path() . '/resources/tags/' . $tag->id;
+
+                return "<a href=\"$href\" class=\"$class\">$tag->name</a>";
+            });
+        });
+    }
+
     public function multiple(bool $multiple = true)
     {
         $this->withMeta([
