@@ -2,6 +2,7 @@
 
 namespace Spatie\TagsField;
 
+use Laravel\Nova\Nova;
 use Spatie\Tags\Tag;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
