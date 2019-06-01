@@ -3,6 +3,7 @@
 namespace Spatie\TagsField;
 
 use Spatie\Tags\Tag;
+use Laravel\Nova\Nova;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -20,6 +21,23 @@ class Tags extends Field
     public function type(string $type)
     {
         return $this->withMeta(['type' => $type]);
+    }
+
+    public function withLinkToTagResource(string $tagResource = null, string $class = 'no-underline dim text-primary font-bold')
+    {
+        if (is_null($tagResource)) {
+            $tagResource = 'App\Nova\Tag';
+        }
+
+        $uriKey = $tagResource::uriKey();
+
+        return $this->displayUsing(function ($tags) use ($class, $uriKey) {
+            return $tags->map(function (Tag $tag) use ($class, $uriKey) {
+                $href = Nova::path().'/resources/'.$uriKey.'/'.$tag->id;
+
+                return "<a href=\"$href\" class=\"$class\">$tag->name</a>";
+            });
+        });
     }
 
     public function multiple(bool $multiple = true)

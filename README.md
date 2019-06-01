@@ -150,6 +150,15 @@ class Tag extends Resource
 }
 ```
 
+### Show tags with a link to a Nova resource
+
+When creating the field, you can use the `withLinkToTagResource` method.  
+Example:
+```php
+Tags::make('Tags')->withLinkToTagResource() // The resource App\Nova\Tag will be used
+Tags::make('Tags')->withLinkToTagResource(\Custom\CustomTag::class) // The resource \Custom\CustomTag will be used
+```
+
 ### Testing
 
 ``` bash

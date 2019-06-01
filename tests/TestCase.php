@@ -9,7 +9,7 @@ use Spatie\TagsField\TagsFieldServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

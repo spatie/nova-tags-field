@@ -1,6 +1,6 @@
 <template>
     <panel-item :field="field">
-        <p slot="value" v-text="field.value.join(', ')"></p>
+        <p slot="value" v-html="typeof field.value === 'object' ? field.value.join(', ') : field.value"></p>
     </panel-item>
 </template>
 

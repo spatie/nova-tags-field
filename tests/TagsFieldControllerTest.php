@@ -3,10 +3,12 @@
 namespace Spatie\TagsField\Tests;
 
 use Spatie\Tags\Tag;
+use Laravel\Nova\Resource;
+use Spatie\TagsField\Tags;
 
 class TagsFieldControllerTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -41,6 +43,35 @@ class TagsFieldControllerTest extends TestCase
             ->assertJsonCount(0);
     }
 
+    /** @test */
+    public function the_display_callback_is_valid()
+    {
+        $tags = Tag::all()->take(1);
+
+        $tagField = Tags::make('Tag');
+        $this->assertNull($tagField->displayCallback);
+
+        $tagField = Tags::make('Tag')->withLinkToTagResource(TagResource::class);
+        $this->assertIsCallable($tagField->displayCallback);
+        $this->assertEquals('<a href="/nova/resources/tag-resources/1" class="no-underline dim text-primary font-bold">one</a>', call_user_func($tagField->displayCallback, $tags)->first());
+
+        $tagField = Tags::make('Tag')->withLinkToTagResource(TagResource::class, 'custom-class');
+        $this->assertIsCallable($tagField->displayCallback);
+        $this->assertEquals('<a href="/nova/resources/tag-resources/1" class="custom-class">one</a>', call_user_func($tagField->displayCallback, $tags)->first());
+
+        $tagField = Tags::make('Tag')->displayUsing(function ($tags) {
+            return $tags->map(function (Tag $tag) {
+                return $tag->name;
+            })->join(', ');
+        });
+
+        $this->assertIsCallable($tagField->displayCallback);
+        $this->assertEquals('one', call_user_func($tagField->displayCallback, $tags));
+
+        $this->expectExceptionMessage('Class \'App\Nova\Tag\' not found');
+        Tags::make('Tag')->withLinkToTagResource();
+    }
+
     protected function createTags()
     {
         Tag::findOrCreateFromString('one');
@@ -48,4 +79,8 @@ class TagsFieldControllerTest extends TestCase
         Tag::findOrCreateFromString('Another-ONE-with-different-casing');
         Tag::findOrCreateFromString('two');
     }
+}
+
+abstract class TagResource extends Resource
+{
 }
