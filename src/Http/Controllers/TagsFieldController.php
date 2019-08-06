@@ -29,7 +29,11 @@ class TagsFieldController extends Controller
             $query->limit($request['limit']);
         }
 
-        return $query->get()->map(function (Tag $tag) {
+        $sorted = $query->get()->sortBy(function (Tag $tag) {
+            return strtolower($tag->name);
+        })->values();
+
+        return $sorted->map(function (Tag $tag) {
             return $tag->name;
         });
     }
