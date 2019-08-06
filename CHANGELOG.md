@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 2.2.1 - 2019-08-05
+
+- sort the tags by name
+
 ## 2.2.0 - 2019-06-01
 
 - add `withLinkToTagResource` function
