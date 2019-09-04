@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 2.3.0 - 2019-09-04
+
+- add support for Laravel 6
+
 ## 2.2.1 - 2019-08-05
 
 - sort the tags by name

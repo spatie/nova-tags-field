@@ -2,6 +2,7 @@
 
 namespace Spatie\TagsField;
 
+use Illuminate\Support\Arr;
 use Spatie\Tags\Tag;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Fields\Field;
@@ -97,7 +98,7 @@ class Tags extends Field
     {
         $tags = $resource->tags;
 
-        if (array_has($this->meta(), 'type')) {
+        if (Arr::has($this->meta(), 'type')) {
             $tags = $tags->where('type', $this->meta()['type']);
         }
 
