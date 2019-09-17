@@ -2,9 +2,9 @@
 
 namespace Spatie\TagsField;
 
-use Illuminate\Support\Arr;
 use Spatie\Tags\Tag;
 use Laravel\Nova\Nova;
+use Illuminate\Support\Arr;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
