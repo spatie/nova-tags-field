@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 2.3.1 - 2019-11-13
+
+- consistent styling (#68)
+
 ## 2.3.0 - 2019-09-04
 
 - add support for Laravel 6
