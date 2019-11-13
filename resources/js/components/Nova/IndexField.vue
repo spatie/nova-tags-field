@@ -1,5 +1,5 @@
 <template>
-    <p class="py-3 tags-index-field" v-html="typeof field.value === 'object' ? field.value.join(', ') : field.value"></p>
+    <div class="py-3 tags-index-field" v-html="typeof field.value === 'object' ? field.value.join(', ') : field.value"></div>
 </template>
 
 <script>
