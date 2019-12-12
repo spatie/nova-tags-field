@@ -68,6 +68,5 @@ abstract class TestCase extends Orchestra
             $table->increments('id');
             $table->string('name')->nullable();
         });
-
     }
 }
