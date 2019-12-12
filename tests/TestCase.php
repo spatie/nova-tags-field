@@ -4,6 +4,7 @@ namespace Spatie\TagsField\Tests;
 
 use Dotenv\Dotenv;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\TagsField\TagsFieldServiceProvider;
 
@@ -15,7 +16,7 @@ abstract class TestCase extends Orchestra
 
         Route::middlewareGroup('nova', []);
 
-        $this->setUpDatabase();
+        $this->setUpDatabase($this->app);
     }
 
     protected function getPackageProviders($app)
@@ -52,12 +53,21 @@ abstract class TestCase extends Orchestra
         ]);
     }
 
-    protected function setUpDatabase()
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     */
+    protected function setUpDatabase($app)
     {
         $this->artisan('migrate:fresh');
 
         include_once __DIR__.'/../vendor/spatie/laravel-tags/database/migrations/create_tag_tables.php.stub';
 
         (new \CreateTagTables())->up();
+
+        $app['db']->connection()->getSchemaBuilder()->create('test_models', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->nullable();
+        });
+
     }
 }
