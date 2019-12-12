@@ -3,10 +3,10 @@
 namespace Spatie\TagsField;
 
 use Illuminate\Support\Arr;
-use Spatie\Tags\Tag;
-use Laravel\Nova\Nova;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
+use Spatie\Tags\Tag;
 
 class Tags extends Field
 {

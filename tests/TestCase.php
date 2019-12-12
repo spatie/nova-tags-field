@@ -3,8 +3,8 @@
 namespace Spatie\TagsField\Tests;
 
 use Dotenv\Dotenv;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\TagsField\TagsFieldServiceProvider;
 
