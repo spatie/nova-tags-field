@@ -2,17 +2,25 @@
 
 namespace Spatie\TagsField\Tests;
 
-use Spatie\Tags\Tag;
 use Laravel\Nova\Resource;
+use Spatie\Tags\Tag;
 use Spatie\TagsField\Tags;
 
 class TagsFieldControllerTest extends TestCase
 {
+    /** @var TestModel */
+    protected $testModel;
+
     public function setUp(): void
     {
         parent::setUp();
 
         $this->createTags();
+
+        $this->testModel = TestModel::create([
+            'name' => 'model1',
+            'tags' => ['one'],
+        ]);
     }
 
     /** @test */
@@ -48,16 +56,18 @@ class TagsFieldControllerTest extends TestCase
     {
         $tags = Tag::all()->take(1);
 
+        $resource = $this->testModel->load('tags');
+
         $tagField = Tags::make('Tag');
         $this->assertNull($tagField->displayCallback);
 
         $tagField = Tags::make('Tag')->withLinkToTagResource(TagResource::class);
         $this->assertIsCallable($tagField->displayCallback);
-        $this->assertEquals('<a href="/nova/resources/tag-resources/1" class="no-underline dim text-primary font-bold">one</a>', call_user_func($tagField->displayCallback, $tags)->first());
+        $this->assertEquals('<a href="/nova/resources/tag-resources/1" class="no-underline dim text-primary font-bold">one</a>', call_user_func($tagField->displayCallback, $tags->toArray(), $resource, 'tags')->first());
 
         $tagField = Tags::make('Tag')->withLinkToTagResource(TagResource::class, 'custom-class');
         $this->assertIsCallable($tagField->displayCallback);
-        $this->assertEquals('<a href="/nova/resources/tag-resources/1" class="custom-class">one</a>', call_user_func($tagField->displayCallback, $tags)->first());
+        $this->assertEquals('<a href="/nova/resources/tag-resources/1" class="custom-class">one</a>', call_user_func($tagField->displayCallback, $tags->toArray(), $resource, 'tags')->first());
 
         $tagField = Tags::make('Tag')->displayUsing(function ($tags) {
             return $tags->map(function (Tag $tag) {
