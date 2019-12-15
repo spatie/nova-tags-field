@@ -2,11 +2,11 @@
 
 namespace Spatie\TagsField;
 
-use Spatie\Tags\Tag;
-use Laravel\Nova\Nova;
 use Illuminate\Support\Arr;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
+use Spatie\Tags\Tag;
 
 class Tags extends Field
 {
@@ -32,7 +32,9 @@ class Tags extends Field
 
         $uriKey = $tagResource::uriKey();
 
-        return $this->displayUsing(function ($tags) use ($class, $uriKey) {
+        return $this->displayUsing(function ($value, $resource, $attribute) use ($class, $uriKey) {
+            $tags = data_get($resource, $attribute);
+
             return $tags->map(function (Tag $tag) use ($class, $uriKey) {
                 $href = rtrim(Nova::path(), '/').'/resources/'.$uriKey.'/'.$tag->id;
 
