@@ -2,9 +2,9 @@
 
 namespace Spatie\TagsField\Http\Controllers;
 
-use Spatie\Tags\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Spatie\Tags\Tag;
 
 class TagsFieldController extends Controller
 {
