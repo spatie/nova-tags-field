@@ -36,7 +36,7 @@ class Tags extends Field
             $tags = data_get($resource, $attribute);
 
             return $tags->map(function (Tag $tag) use ($class, $uriKey) {
-                $href = Nova::path().'/resources/'.$uriKey.'/'.$tag->id;
+                $href = rtrim(Nova::path(), '/').'/resources/'.$uriKey.'/'.$tag->id;
 
                 return "<a href=\"$href\" class=\"$class\">$tag->name</a>";
             });
