@@ -2,6 +2,11 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 2.3.2 - 2019-12-15
+
+- fix withLinkToTagResource function (#73)
+- fix resource url if nova.path to is `/` (#63)
+
 ## 2.3.1 - 2019-11-13
 
 - consistent styling (#68)
