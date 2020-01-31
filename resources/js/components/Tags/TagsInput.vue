@@ -72,7 +72,7 @@ export default {
                 return;
             }
 
-            let queryString = `?filter[containing]=${this.input}&limit=${this.suggestionLimit}`;
+            let queryString = `?filter[containing]=${encodeURIComponent(this.input)}&limit=${this.suggestionLimit}`;
 
             if (this.type) {
                 queryString += `&filter[type]=${this.type}`;
