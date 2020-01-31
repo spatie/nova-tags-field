@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 2.3.4 - 2020-01-31
+
+- fix small layout issue
+
 ## 2.3.3 - 2020-01-31
 
 - encode unicode characters from inputs (#76)
