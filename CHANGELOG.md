@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.0.0 - 2020-03-03
+
+- Support Laravel 7.0 and Nova 3.0
+
 ## 2.3.4 - 2020-01-31
 
 - fix small layout issue

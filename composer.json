@@ -22,13 +22,13 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel/nova": "^2.9",
+        "laravel/nova": "^3.0",
         "spatie/laravel-tags": "^2.3"
     },
     "require-dev": {
         "mockery/mockery": "^1.1",
-        "orchestra/testbench": "^3.8|^4.0",
-        "phpunit/phpunit": "8.0"
+        "orchestra/testbench": "^5.0",
+        "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "psr-4": {
