@@ -33,7 +33,7 @@ class Tags extends Field
         $uriKey = $tagResource::uriKey();
 
         return $this->displayUsing(function ($value, $resource, $attribute) use ($class, $uriKey) {
-            $tags = $resource->tags()->where(function ($query){
+            $tags = $resource->tags()->where(function ($query) {
                 if (Arr::has($this->meta(), 'type')) {
                     $query->where('type', $this->meta()['type']);
                 }
