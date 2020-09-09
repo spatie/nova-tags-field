@@ -55,4 +55,4 @@ jobs:
             -   name: Execute tests
                 run: vendor/bin/phpunit
                 env:
-                  DB_PASSWORD: root
+                    DB_PORT: ${{ job.services.mysql.ports[3306] }}
