@@ -2,7 +2,7 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
-## 4.0.0 - 2020-09-09
+## 3.0.1 - 2020-09-09
 
 - Support Laravel 8.0
 
