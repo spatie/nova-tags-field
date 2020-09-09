@@ -6,6 +6,7 @@ use Dotenv\Dotenv;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\Tags\TagsServiceProvider;
 use Spatie\TagsField\TagsFieldServiceProvider;
 
 abstract class TestCase extends Orchestra
@@ -22,36 +23,11 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            \Spatie\Tags\TagsServiceProvider::class,
+            TagsServiceProvider::class,
             TagsFieldServiceProvider::class,
         ];
     }
 
-    protected function getEnvironmentSetUp($app)
-    {
-        //If we're not in travis, load our local .env file
-        if (empty(getenv('CI'))) {
-            $envPath = realpath(__DIR__.'/..');
-
-            if (! file_exists($envPath)) {
-                $dotenv = new Dotenv($envPath);
-                $dotenv->load();
-            }
-        }
-
-        $app['config']->set('database.default', 'mysql');
-        $app['config']->set('database.connections.mysql', [
-            'driver' => 'mysql',
-            'host' => '127.0.0.1',
-            'database' => env('DB_DATABASE', 'nova_tags_field'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
-            'strict' => false,
-        ]);
-    }
 
     /**
      * @param \Illuminate\Foundation\Application $app
