@@ -23,7 +23,7 @@
     "require": {
         "php": ">=7.1.0",
         "laravel/nova": "^3.0",
-        "spatie/laravel-tags": "^2.3"
+        "spatie/laravel-tags": "^2.3|^3.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.1",
