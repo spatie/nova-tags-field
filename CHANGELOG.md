@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.0.3 - 2020-09-12
+
+- escape tags (#99)
+
 ## 3.0.2 - 2020-09-09
 
 - allow spatie/laravel-tags v3
