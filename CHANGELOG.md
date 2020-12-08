@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.1.0 - 2020-12-08
+
+- allow PHP 8
+
 ## 3.0.4 - 2020-10-01
 
 - fix for "Call to a member function map() on null" (#94)
