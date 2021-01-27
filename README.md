@@ -166,6 +166,12 @@ Tags::make('Tags')->withLinkToTagResource() // The resource App\Nova\Tag will be
 Tags::make('Tags')->withLinkToTagResource(\Custom\CustomTag::class) // The resource \Custom\CustomTag will be used
 ```
 
+### Publishing the config file to use a custom model
+
+``` bash
+php artisan vendor:publish --provider="Spatie\TagsField\TagsFieldServiceProvider"
+```
+
 ### Testing
 
 ``` bash

@@ -25,6 +25,10 @@ class TagsFieldServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $this->routes();
         });
+
+        $this->publishes([
+            __DIR__.'/../config/nova-tags-field.php' => config_path('nova-tags-field.php'),
+        ]);
     }
 
     /**

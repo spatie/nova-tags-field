@@ -15,7 +15,8 @@ class TagsFieldController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Tag::query();
+        $model = config('nova-tags-field.model', Tag::class);
+        $query = $model::query();
 
         if ($request->has('filter.containing')) {
             $query->containing($request['filter']['containing']);
