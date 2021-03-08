@@ -123,6 +123,10 @@ public function fields(Request $request)
 
 The field will be rendered as a select form element. It will be populated by the names of the tags already saved.
 
+## Using a custom Tag Model
+
+The [underlying tags config file](https://github.com/spatie/laravel-tags/blob/master/config/tags.php) is used to specify the fully qualified class name of the tag model.
+
 ## Working with tags
 
 For more info on how to work with the saved tags, head over to [the docs of spatie/laravel-tags](https://docs.spatie.be/laravel-tags/).
