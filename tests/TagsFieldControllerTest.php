@@ -78,7 +78,7 @@ class TagsFieldControllerTest extends TestCase
         $this->assertIsCallable($tagField->displayCallback);
         $this->assertEquals('one', call_user_func($tagField->displayCallback, $tags));
 
-        $this->expectExceptionMessage('Class \'App\Nova\Tag\' not found');
+        $this->expectExceptionMessage('Class "App\Nova\Tag" not found');
         Tags::make('Tag')->withLinkToTagResource();
     }
 
