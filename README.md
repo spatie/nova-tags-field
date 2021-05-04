@@ -135,15 +135,12 @@ public function fields(Request $request)
     return [
         // ...
         
-        Tags::make('Tags')
-            ->withMeta(['placeholder' => 'Add categories...']),
+        Tags::make('Categories', 'tags')->withMeta(['placeholder' => 'Add categories...']),
 
         // ...
     ];
 }
 ```
-
-The field will be rendered as a select form element. It will be populated by the names of the tags already saved.
 
 ## Working with tags
 
