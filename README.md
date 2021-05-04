@@ -123,6 +123,28 @@ public function fields(Request $request)
 
 The field will be rendered as a select form element. It will be populated by the names of the tags already saved.
 
+## Use a different placeholder
+
+You can use the `withMeta` method [documented here](https://nova.laravel.com/docs/3.0/customization/fields.html#field-options) to change the placeholder from the default, which is `__('Add tags...')`.
+
+```php
+// in your Nova resource
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        
+        Tags::make('Tags')
+            ->withMeta(['placeholder' => 'Add categories...']),
+
+        // ...
+    ];
+}
+```
+
+The field will be rendered as a select form element. It will be populated by the names of the tags already saved.
+
 ## Working with tags
 
 For more info on how to work with the saved tags, head over to [the docs of spatie/laravel-tags](https://docs.spatie.be/laravel-tags/).
