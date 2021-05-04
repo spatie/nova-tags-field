@@ -20,7 +20,7 @@
                 <input
                     ref="input"
                     class="tags-input-text"
-                    :placeholder="__('Add tag...')"
+                    :placeholder="placeholder ? placeholder : __('Add tag...')"
                     v-bind="inputProps"
                     v-on="inputEvents"
                 >
@@ -44,7 +44,7 @@
 import TagsInput from './TagsInput.vue';
 
 export default {
-    props: ['name', 'tags', 'type', 'suggestionLimit', 'errors'],
+    props: ['name', 'tags', 'type', 'suggestionLimit', 'errors', 'placeholder'],
 
     model: {
         prop: 'tags',
