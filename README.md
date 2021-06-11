@@ -22,7 +22,7 @@ This Nova field requires MySQL 5.7.8 or higher.
 
 ## Installation
 
-First you must install [spatie/laravel-tags](https://github.com/spatie/laravel-tags) into your Laravel app. Here are [the installation instructions](https://docs.spatie.be/laravel-tags/v2/installation-and-setup) for that package.
+First you must install [spatie/laravel-tags](https://github.com/spatie/laravel-tags) into your Laravel app. Here are [the installation instructions](https://spatie.be/docs/laravel-tags/v4/installation-and-setup) for that package.
 
 Next, you can install this package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
