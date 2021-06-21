@@ -15,7 +15,7 @@ class TagsFieldController extends Controller
      */
     public function index(Request $request)
     {
-        $query = resolve(Tag::getTagClassName())->query();
+        $query = resolve(config('tags.tag_model', Tag::class))->query();
 
         if ($request->has('filter.containing')) {
             $query->containing($request['filter']['containing']);
