@@ -7,6 +7,7 @@
                 :type="field.type"
                 :suggestion-limit="field.suggestionLimit"
                 :errors="errors"
+                :placeholder="field.placeholder"
                 v-model="tags"
             ></component>
         </template>
