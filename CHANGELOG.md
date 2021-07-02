@@ -2,6 +2,9 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.2.0 -2021-07-02
+- make field accept optional placeholder (#125)
+
 ## 3.1.1 -2021-03-25
 
 - add support for spatie/laravel-tags 4.0 (#110)
