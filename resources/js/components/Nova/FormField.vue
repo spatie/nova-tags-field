@@ -8,6 +8,7 @@
                 :suggestion-limit="field.suggestionLimit"
                 :errors="errors"
                 :placeholder="field.placeholder"
+                :can-be-deselected="field.canBeDeselected"
                 v-model="tags"
             ></component>
         </template>

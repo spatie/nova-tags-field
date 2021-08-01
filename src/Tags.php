@@ -72,6 +72,17 @@ class Tags extends Field
         return $this;
     }
 
+    public function canBeDeselected()
+    {
+        if ($this->meta['multiple']) {
+            return $this;
+        }
+
+        $this->withMeta(['canBeDeselected' => true]);
+
+        return $this;
+    }
+
     public function withoutSuggestions()
     {
         return $this->limitSuggestions(0);

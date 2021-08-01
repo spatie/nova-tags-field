@@ -123,6 +123,23 @@ public function fields(Request $request)
 
 The field will be rendered as a select form element. It will be populated by the names of the tags already saved.
 
+If you want to be able to deselect a tag, you can call the `canBeDeselected` method.
+
+```php
+// in your Nova resource
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        
+        Tags::make('Tags')->single()->canBeDeselected(),
+
+        // ...
+    ];
+}
+```
+
 ## Use a different placeholder
 
 You can use the `withMeta` method [documented here](https://nova.laravel.com/docs/3.0/customization/fields.html#field-options) to change the placeholder from the default, which is `__('Add tags...')`.
