@@ -7,8 +7,8 @@
         :value="tags[0]"
         @input="$emit('input', [$event.target.value])"
     >
-        <option value="" selected disabled>
-            {{ __('Choose an option') }}
+        <option value="" selected :disabled="!canBeDeselected">
+            {{ placeholder ? placeholder : __('Choose an option') }}
         </option>
         <option
             v-for="tag in availableTags"
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    props: ['tags', 'type', 'name', 'suggestionLimit', 'errors'],
+    props: ['tags', 'type', 'name', 'suggestionLimit', 'errors', 'placeholder', 'canBeDeselected'],
 
     model: {
         prop: 'tags',
