@@ -2,7 +2,12 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
-## 3.2.0 -2021-07-02
+## 3.3.0 - 2021-08-01
+
+- add the ability to deselect a single tag (#127)
+
+## 3.2.0 - 2021-07-02
+
 - make field accept optional placeholder (#125)
 
 ## 3.1.1 -2021-03-25
