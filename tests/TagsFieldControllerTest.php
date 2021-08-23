@@ -2,13 +2,14 @@
 
 namespace Spatie\TagsField\Tests;
 
+use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
 use Spatie\Tags\Tag;
 use Spatie\TagsField\Tags;
 
 class TagsFieldControllerTest extends TestCase
 {
-    /** @var TestModel */
+    /** @var Models\TestModel */
     protected $testModel;
 
     public function setUp(): void
@@ -17,9 +18,14 @@ class TagsFieldControllerTest extends TestCase
 
         $this->createTags();
 
-        $this->testModel = TestModel::create([
+        $this->testModel = Models\TestModel::create([
             'name' => 'model1',
             'tags' => ['one'],
+        ]);
+
+        $this->thingModel = Models\Thing::create([
+            'name' => 'modelA',
+            'tags' => ['alpha'],
         ]);
     }
 
@@ -49,6 +55,20 @@ class TagsFieldControllerTest extends TestCase
             ->getJson('nova-vendor/spatie/nova-tags-field?limit=0')
             ->assertSuccessful()
             ->assertJsonCount(0);
+    }
+
+    /** @test */
+    public function use_custom_tag_model()
+    {
+        Nova::resources([
+            Resources\Thing::class,
+        ]);
+
+        $this
+            ->getJson('nova-vendor/spatie/nova-tags-field?resourceName=things')
+            ->assertSuccessful()
+            ->assertJsonCount(2)
+            ->assertSee('alpha');
     }
 
     /** @test */
@@ -88,6 +108,9 @@ class TagsFieldControllerTest extends TestCase
         Tag::findOrCreateFromString('another-one');
         Tag::findOrCreateFromString('Another-ONE-with-different-casing');
         Tag::findOrCreateFromString('two');
+
+        Models\Tag::findOrCreateFromString('alpha');
+        Models\Tag::findOrCreateFromString('bravo');
     }
 }
 

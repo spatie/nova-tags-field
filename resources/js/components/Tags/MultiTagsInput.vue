@@ -3,6 +3,7 @@
       :tags="tags"
       :type="type"
       :suggestion-limit="suggestionLimit"
+      :resource-name="resourceName"
       @input="handleInput"
     >
         <div slot-scope="{ tags, removeTag, inputProps, inputEvents, suggestions, insertSuggestion }">
@@ -44,7 +45,7 @@
 import TagsInput from './TagsInput.vue';
 
 export default {
-    props: ['name', 'tags', 'type', 'suggestionLimit', 'errors', 'placeholder'],
+    props: ['name', 'tags', 'type', 'suggestionLimit', 'errors', 'placeholder', 'resourceName'],
 
     model: {
         prop: 'tags',

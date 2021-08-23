@@ -4,6 +4,7 @@ namespace Spatie\TagsField\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Laravel\Nova\Nova;
 use Spatie\Tags\Tag;
 
 class TagsFieldController extends Controller
@@ -15,7 +16,25 @@ class TagsFieldController extends Controller
      */
     public function index(Request $request)
     {
-        $query = resolve(config('tags.tag_model', Tag::class))->query();
+        $tagModel = null;
+
+        if ($request->has('resourceName')) {
+            $resourceClass = Nova::resourceForKey($request['resourceName']);
+
+            if ($resourceClass) {
+                $modelClass = $resourceClass::$model;
+
+                if (method_exists($modelClass, 'getTagClassName')) {
+                    $tagModel = $modelClass::getTagClassName();
+                }
+            }
+        }
+
+        if (!$tagModel) {
+            $tagModel = config('tags.tag_model', Tag::class);
+        }
+
+        $query = resolve($tagModel)->query();
 
         if ($request->has('filter.containing')) {
             $query->containing($request['filter']['containing']);

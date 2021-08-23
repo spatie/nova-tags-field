@@ -5,6 +5,7 @@ export default {
         type: { default: null },
         suggestionLimit: { required: true },
         removeOnBackspace: { default: true },
+        resourceName: { default: null },
     },
 
     model: {
@@ -72,13 +73,20 @@ export default {
                 return;
             }
 
-            let queryString = `?filter[containing]=${encodeURIComponent(this.input)}&limit=${this.suggestionLimit}`;
-
-            if (this.type) {
-                queryString += `&filter[type]=${this.type}`;
+            let params = {
+                'filter[containing]': this.input,
+                limit: this.suggestionLimit,
             }
 
-            window.axios.get(`/nova-vendor/spatie/nova-tags-field${queryString}`).then(response => {
+            if (this.type) {
+                params['filter[type]'] = this.type;
+            }
+
+            if (this.resourceName) {
+                params.resourceName = this.resourceName;
+            }
+
+            window.axios.get('/nova-vendor/spatie/nova-tags-field', { params }).then(response => {
                 // If the input was cleared by the time the request finished,
                 // clear the suggestions too.
                 if (!this.input) {

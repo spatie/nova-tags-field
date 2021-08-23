@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\TagsField\Tests;
+namespace Spatie\TagsField\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Tags\HasTags;

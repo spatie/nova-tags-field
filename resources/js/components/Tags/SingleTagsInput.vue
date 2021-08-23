@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    props: ['tags', 'type', 'name', 'suggestionLimit', 'errors', 'placeholder', 'canBeDeselected'],
+    props: ['tags', 'type', 'name', 'suggestionLimit', 'errors', 'placeholder', 'canBeDeselected', 'resourceName'],
 
     model: {
         prop: 'tags',
@@ -39,10 +39,20 @@ export default {
 
     methods: {
         getAvailableTags() {
-            const queryString = this.type ? `filter[type]=${this.type}` : '';
+            let params = {}
+
+            if (this.type) {
+                params['filter[type]'] = this.type;
+            }
+
+            if (this.resourceName) {
+                params.resourceName = this.resourceName;
+            }
 
             window.axios
-                .get(`/nova-vendor/spatie/nova-tags-field?${queryString}`)
+                .get('/nova-vendor/spatie/nova-tags-field', {
+                    params,
+                })
                 .then(response => {
                     this.availableTags = response.data;
 

@@ -1,5 +1,5 @@
 <template>
-    <default-field :field="field" :errors="errors" :show-help-text="showHelpText">
+    <default-field :field="field" :errors="errors" :resource-name="resourceName" :show-help-text="showHelpText">
         <template slot="field">
             <component
                 :is="component"
@@ -9,6 +9,7 @@
                 :errors="errors"
                 :placeholder="field.placeholder"
                 :can-be-deselected="field.canBeDeselected"
+                :resource-name="resourceName"
                 v-model="tags"
             ></component>
         </template>

@@ -42,5 +42,29 @@ abstract class TestCase extends Orchestra
             $table->increments('id');
             $table->string('name')->nullable();
         });
+
+        $app['db']->connection()->getSchemaBuilder()->create('things', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->nullable();
+        });
+
+        $app['db']->connection()->getSchemaBuilder()->create('thing_tags', function (Blueprint $table) {
+            $table->id();
+
+            $table->json('name');
+            $table->json('slug');
+            $table->string('type')->nullable();
+            $table->integer('order_column')->nullable();
+
+            $table->timestamps();
+        });
+
+        $app['db']->connection()->getSchemaBuilder()->create('thing_taggables', function (Blueprint $table) {
+            $table->foreignId('tag_id')->constrained('thing_tags')->cascadeOnDelete();
+
+            $table->morphs('taggable');
+
+            $table->unique(['tag_id', 'taggable_id', 'taggable_type']);
+        });
     }
 }
