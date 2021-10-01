@@ -4,6 +4,7 @@ export default {
         tags: { required: true },
         type: { default: null },
         suggestionLimit: { required: true },
+        limit: { default: null },
         removeOnBackspace: { default: true },
     },
 
@@ -25,6 +26,25 @@ export default {
     computed: {
         newTag() {
             return this.input.trim();
+        },
+        canAddTag() {
+            if (typeof this.limit === 'undefined') {
+                return true
+            }
+
+            if (this.limit === null) {
+                return true
+            }
+
+            if (!Number.isInteger(this.limit)) {
+                return true
+            }
+
+            if (this.limit < 1) {
+                return true
+            }
+
+            return this.tags.length < this.limit
         },
     },
 
@@ -105,6 +125,7 @@ export default {
             tags: this.tags,
             addTag: this.addTag,
             removeTag: this.removeTag,
+            canAddTag: this.canAddTag,
             selectTag: this.selectTag,
             suggestions: this.suggestions,
             insertSuggestion: this.insertSuggestion,
