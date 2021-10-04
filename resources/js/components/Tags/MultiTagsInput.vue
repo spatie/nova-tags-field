@@ -3,9 +3,10 @@
       :tags="tags"
       :type="type"
       :suggestion-limit="suggestionLimit"
+      :limit="limit"
       @input="handleInput"
     >
-        <div slot-scope="{ tags, removeTag, inputProps, inputEvents, suggestions, insertSuggestion }">
+        <div slot-scope="{ tags, removeTag, canAddTag, inputProps, inputEvents, suggestions, insertSuggestion }">
             <div class="tags-input w-full form-control form-input form-input-bordered flex items-center" :class="{ 'border-danger': errors.has(name) }" @click="focusInput">
                 <span v-for="tag in tags" :key="tag" class="tags-input-tag mr-1">
                     <span>{{ tag }}</span>
@@ -18,6 +19,7 @@
                     </button>
                 </span>
                 <input
+                    v-if="canAddTag"
                     ref="input"
                     class="tags-input-text"
                     :placeholder="placeholder ? placeholder : __('Add tag...')"
@@ -44,7 +46,7 @@
 import TagsInput from './TagsInput.vue';
 
 export default {
-    props: ['name', 'tags', 'type', 'suggestionLimit', 'errors', 'placeholder'],
+    props: ['name', 'tags', 'type', 'suggestionLimit', 'errors', 'placeholder', 'limit'],
 
     model: {
         prop: 'tags',
@@ -56,7 +58,9 @@ export default {
 
     methods: {
         focusInput() {
-            this.$refs.input.focus();
+            if (this.$refs.input) {
+                this.$refs.input.focus();
+            }
         },
 
         handleInput(tags) {

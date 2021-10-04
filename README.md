@@ -81,6 +81,14 @@ You can change the number of suggestions with `limitSuggestions()`.
 Tags::make('Tags')->limitSuggestions($maxNumberOfSuggestions),
 ```
 
+## Limiting tags
+
+By default a tags field will let you add unlimited tags. You can limit tags with `limit()`.
+
+```php
+Tags::make('Tags')->limit($maxNumberOfTags),
+```
+
 ## Using types
 
 The [underlying tags package](https://github.com/spatie/laravel-tags) has support for [tag types](https://docs.spatie.be/laravel-tags/v2/advanced-usage/using-types). To make your tags field save tags of a certain type just tack on the name of type when adding the field to your Nova resource.

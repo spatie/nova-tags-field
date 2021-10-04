@@ -52,6 +52,7 @@ class Tags extends Field
         $this->withMeta([
             'multiple' => $multiple,
             'suggestionLimit' => 5,
+            'limit' => null,
         ]);
 
         if (! $this->meta['multiple']) {
@@ -96,6 +97,13 @@ class Tags extends Field
     public function doNotLimitSuggestions()
     {
         return $this->limitSuggestions(9999);
+    }
+
+    public function limit(?int $limit)
+    {
+        $this->withMeta(['limit' => $limit]);
+
+        return $this;
     }
 
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)

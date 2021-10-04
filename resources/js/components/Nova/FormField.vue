@@ -6,6 +6,7 @@
                 :name="field.attribute"
                 :type="field.type"
                 :suggestion-limit="field.suggestionLimit"
+                :limit="field.limit"
                 :errors="errors"
                 :placeholder="field.placeholder"
                 :can-be-deselected="field.canBeDeselected"
