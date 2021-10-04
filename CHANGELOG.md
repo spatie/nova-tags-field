@@ -2,6 +2,10 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.4.0 - 2021-10-04
+
+- add limit option (#132)
+
 ## 3.3.0 - 2021-08-01
 
 - add the ability to deselect a single tag (#127)
