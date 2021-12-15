@@ -128,7 +128,7 @@ class Tags extends Field
         }
 
         return $tags->map(function (Tag $tag) {
-            return e($tag->name);
+            return $tag->name;
         })->values();
     }
 }
