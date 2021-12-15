@@ -2,6 +2,18 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.4.1 - 2021-12-15
+
+## What's Changed
+
+- remove escape from tag by @leMaur in https://github.com/spatie/nova-tags-field/pull/134
+
+## New Contributors
+
+- @leMaur made their first contribution in https://github.com/spatie/nova-tags-field/pull/134
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/3.4.0...3.4.1
+
 ## 3.4.0 - 2021-10-04
 
 - add limit option (#132)
