@@ -2,6 +2,18 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.4.2 - 2022-01-08
+
+## What's Changed
+
+- Don't call containing scope when containing input is null by @t1sh0o in https://github.com/spatie/nova-tags-field/pull/137
+
+## New Contributors
+
+- @t1sh0o made their first contribution in https://github.com/spatie/nova-tags-field/pull/137
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/3.4.1...3.4.2
+
 ## 3.4.1 - 2021-12-15
 
 ## What's Changed
