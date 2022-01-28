@@ -2,6 +2,14 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.4.4 - 2022-01-28
+
+## What's Changed
+
+- Ran yarn command for compiling the components by @aliozgurr in https://github.com/spatie/nova-tags-field/pull/139
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/3.4.3...3.4.4
+
 ## 3.4.3 - 2022-01-25
 
 ## What's Changed
