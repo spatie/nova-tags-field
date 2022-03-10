@@ -2,6 +2,18 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 3.4.5 - 2022-03-10
+
+## What's Changed
+
+- Remove help-text component by @LintonAchmad in https://github.com/spatie/nova-tags-field/pull/141
+
+## New Contributors
+
+- @LintonAchmad made their first contribution in https://github.com/spatie/nova-tags-field/pull/141
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/3.4.4...3.4.5
+
 ## 3.4.4 - 2022-01-28
 
 ## What's Changed
