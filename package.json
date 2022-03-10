@@ -20,7 +20,6 @@
         "laravel-mix": "^1.0",
         "laravel-nova": "^1.0",
         "prettier": "^1.14.2"
-
     },
     "dependencies": {
         "animated-scroll-to": "^1.2.2",

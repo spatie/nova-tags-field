@@ -12,7 +12,6 @@
                 :can-be-deselected="field.canBeDeselected"
                 v-model="tags"
             ></component>
-            <help-text class="help-text mt-2" v-if="field.helpText"></help-text>
         </template>
     </default-field>
 </template>
