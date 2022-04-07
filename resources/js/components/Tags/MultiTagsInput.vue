@@ -36,7 +36,7 @@
                 <input
                     v-if="canAddTag"
                     ref="input"
-                    class="tags-input-text"
+                    class="tags-input-text dark:bg-gray-900"
                     :placeholder="placeholder ? placeholder : __('Add tag...')"
                     v-bind="inputProps"
                     v-on="inputEvents"
