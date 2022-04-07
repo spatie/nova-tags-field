@@ -2,8 +2,10 @@
 
 namespace Spatie\TagsField\Tests;
 
+use CreateTagTables;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Tags\TagsServiceProvider;
 use Spatie\TagsField\TagsFieldServiceProvider;
@@ -36,9 +38,9 @@ abstract class TestCase extends Orchestra
 
         include_once __DIR__.'/../vendor/spatie/laravel-tags/database/migrations/create_tag_tables.php.stub';
 
-        (new \CreateTagTables())->up();
+        (new CreateTagTables())->up();
 
-        $app['db']->connection()->getSchemaBuilder()->create('test_models', function (Blueprint $table) {
+        Schema::create('test_models', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
         });

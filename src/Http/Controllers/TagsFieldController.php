@@ -8,12 +8,7 @@ use Spatie\Tags\Tag;
 
 class TagsFieldController extends Controller
 {
-    /**
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
         $query = resolve(config('tags.tag_model', Tag::class))->query();
 
@@ -29,12 +24,8 @@ class TagsFieldController extends Controller
             $query->limit($request['limit']);
         }
 
-        $sorted = $query->get()->sortBy(function (Tag $tag) {
-            return strtolower($tag->name);
-        })->values();
+        $sorted = $query->get()->sortBy(fn (Tag $tag) => strtolower($tag->name))->values();
 
-        return $sorted->map(function (Tag $tag) {
-            return $tag->name;
-        });
+        return $sorted->map(fn (Tag $tag) => $tag->name);
     }
 }

@@ -1,13 +1,28 @@
 <template>
     <tags-input
-      :tags="tags"
-      :type="type"
-      :suggestion-limit="suggestionLimit"
-      :limit="limit"
-      @input="handleInput"
+        :tags="tagsInput"
+        :type="type"
+        :suggestion-limit="suggestionLimit"
+        :limit="limit"
+        :value="modelValue"
+        @updateTags="handleInput"
     >
-        <div slot-scope="{ tags, removeTag, canAddTag, inputProps, inputEvents, suggestions, insertSuggestion }">
-            <div class="tags-input w-full form-control form-input form-input-bordered flex items-center" :class="{ 'border-danger': errors.has(name) }" @click="focusInput">
+        <template
+            v-slot="{
+                tags,
+                removeTag,
+                canAddTag,
+                inputProps,
+                inputEvents,
+                suggestions,
+                insertSuggestion,
+            }"
+        >
+            <div
+                class="tags-input w-full form-control form-input form-input-bordered flex items-center"
+                :class="{ 'border-danger': errors.has(name) }"
+                @click="focusInput"
+            >
                 <span v-for="tag in tags" :key="tag" class="tags-input-tag mr-1">
                     <span>{{ tag }}</span>
                     <button
@@ -25,7 +40,7 @@
                     :placeholder="placeholder ? placeholder : __('Add tag...')"
                     v-bind="inputProps"
                     v-on="inputEvents"
-                >
+                />
             </div>
             <ul v-if="suggestions.length" class="tags-input-suggestions">
                 <li v-for="suggestion in suggestions" :key="suggestion" class="mr-1">
@@ -38,7 +53,7 @@
                     </button>
                 </li>
             </ul>
-        </div>
+        </template>
     </tags-input>
 </template>
 
@@ -46,15 +61,30 @@
 import TagsInput from './TagsInput.vue';
 
 export default {
-    props: ['name', 'tags', 'type', 'suggestionLimit', 'errors', 'placeholder', 'limit'],
+    props: [
+        'name',
+        'tags',
+        'type',
+        'suggestionLimit',
+        'errors',
+        'placeholder',
+        'limit',
+        'modelValue',
+    ],
 
-    model: {
-        prop: 'tags',
-    },
+    emits: ['update:modelValue'],
 
     components: {
         TagsInput,
     },
+
+    data() {
+        return {
+            tagsInput: this.tags,
+        };
+    },
+
+    mounted() {},
 
     methods: {
         focusInput() {
@@ -64,10 +94,15 @@ export default {
         },
 
         handleInput(tags) {
-            this.$emit('input', tags);
+            this.$emit('update:modelValue', tags);
 
-            // Re-focus the input after a suggestion was inserted
             this.focusInput();
+        },
+    },
+
+    watch: {
+        tags(updatedTags) {
+            this.tagsInput = updatedTags;
         },
     },
 };

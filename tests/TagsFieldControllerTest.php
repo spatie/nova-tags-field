@@ -8,8 +8,7 @@ use Spatie\TagsField\Tags;
 
 class TagsFieldControllerTest extends TestCase
 {
-    /** @var TestModel */
-    protected $testModel;
+    protected TestModel $testModel;
 
     public function setUp(): void
     {

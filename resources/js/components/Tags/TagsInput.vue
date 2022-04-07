@@ -1,12 +1,17 @@
 <script>
+import { h } from 'vue';
+
 export default {
     props: {
-        tags: { required: true },
+        tags: { required: true, default: () => [] },
         type: { default: null },
         suggestionLimit: { required: true },
         limit: { default: null },
         removeOnBackspace: { default: true },
+        modelValue: { default: null },
     },
+
+    emits: ['updateTags'],
 
     model: {
         prop: 'tags',
@@ -16,6 +21,7 @@ export default {
         return {
             input: '',
             suggestions: [],
+            tagsInput: this.tags,
         };
     },
 
@@ -29,42 +35,45 @@ export default {
         },
         canAddTag() {
             if (typeof this.limit === 'undefined') {
-                return true
+                return true;
             }
 
             if (this.limit === null) {
-                return true
+                return true;
             }
 
             if (!Number.isInteger(this.limit)) {
-                return true
+                return true;
             }
 
             if (this.limit < 1) {
-                return true
+                return true;
             }
 
-            return this.tags.length < this.limit
+            return this.tagsInput.length < this.limit;
         },
     },
 
     methods: {
         addTag() {
-            if (this.newTag.length === 0 || this.tags.includes(this.newTag)) {
+            if (this.newTag.length === 0 || this.tagsInput.includes(this.newTag)) {
                 return;
             }
 
-            this.$emit('input', [...this.tags, this.newTag]);
+            this.$emit('updateTags', [...this.tagsInput, this.newTag]);
 
             this.clearInput();
         },
 
         removeTag(tag) {
-            this.$emit('input', this.tags.filter(t => t !== tag));
+            this.$emit(
+                'updateTags',
+                this.tagsInput.filter(t => t !== tag)
+            );
         },
 
         selectTag(tag) {
-            this.$emit('input', tag);
+            this.$emit('updateTags', tag);
         },
 
         clearInput() {
@@ -75,7 +84,7 @@ export default {
 
         handleBackspace() {
             if (this.newTag.length === 0) {
-                this.$emit('input', this.tags.slice(0, -1));
+                this.$emit('updateTags', this.tagsInput.slice(0, -1));
             }
         },
 
@@ -92,67 +101,80 @@ export default {
                 return;
             }
 
-            let queryString = `?filter[containing]=${encodeURIComponent(this.input)}&limit=${this.suggestionLimit}`;
+            let queryString = `?filter[containing]=${encodeURIComponent(this.input)}&limit=${
+                this.suggestionLimit
+            }`;
 
             if (this.type) {
                 queryString += `&filter[type]=${this.type}`;
             }
 
-            window.axios.get(`/nova-vendor/spatie/nova-tags-field${queryString}`).then(response => {
-                // If the input was cleared by the time the request finished,
-                // clear the suggestions too.
-                if (!this.input) {
-                    this.suggestions = [];
+            Nova.request()
+                .get(`/nova-vendor/spatie/nova-tags-field${queryString}`)
+                .then(response => {
+                    // If the input was cleared by the time the request finished,
+                    // clear the suggestions too.
+                    if (!this.input) {
+                        this.suggestions = [];
 
-                    return;
-                }
+                        return;
+                    }
 
-                this.suggestions = response.data.filter(suggestion => {
-                    return !this.tags.find(tag => tag === suggestion);
+                    this.suggestions = response.data.filter(suggestion => {
+                        return !this.tagsInput.find(tag => tag === suggestion);
+                    });
                 });
-            });
         },
 
         insertSuggestion(suggestion) {
-            this.$emit('input', [...this.tags, suggestion]);
+            this.$emit('updateTags', [...this.tagsInput, suggestion]);
 
             this.clearInput();
         },
     },
 
-    render() {
-        return this.$scopedSlots.default({
-            tags: this.tags,
-            addTag: this.addTag,
-            removeTag: this.removeTag,
-            canAddTag: this.canAddTag,
-            selectTag: this.selectTag,
-            suggestions: this.suggestions,
-            insertSuggestion: this.insertSuggestion,
-            inputProps: {
-                value: this.input,
-            },
-            inputEvents: {
-                input: e => {
-                    this.input = e.target.value;
+    watch: {
+        tags(newTags) {
+            this.tagsInput = newTags;
+        },
+    },
 
-                    this.throttledGetSuggested();
+    render() {
+        return h(
+            'div',
+            this.$slots.default({
+                tags: this.tagsInput,
+                addTag: this.addTag,
+                removeTag: this.removeTag,
+                canAddTag: this.canAddTag,
+                selectTag: this.selectTag,
+                suggestions: this.suggestions,
+                insertSuggestion: this.insertSuggestion,
+                inputProps: {
+                    value: this.input,
                 },
-                keydown: e => {
-                    if (e.key === 'Backspace' && this.removeOnBackspace) {
-                        this.handleBackspace();
-                    }
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        this.addTag();
-                    }
-                    if(e.key === "ArrowDown" && this.suggestions.length === 1) {
-                        this.input = this.suggestions[0];
-                        this.addTag();
-                    }
+                inputEvents: {
+                    input: e => {
+                        this.input = e.target.value;
+
+                        this.throttledGetSuggested();
+                    },
+                    keydown: e => {
+                        if (e.key === 'Backspace' && this.removeOnBackspace) {
+                            this.handleBackspace();
+                        }
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            this.addTag();
+                        }
+                        if (e.key === 'ArrowDown' && this.suggestions.length === 1) {
+                            this.input = this.suggestions[0];
+                            this.addTag();
+                        }
+                    },
                 },
-            },
-        });
+            })
+        );
     },
 };
 </script>

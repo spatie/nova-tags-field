@@ -1,20 +1,16 @@
 <template>
     <select
         v-if="loaded"
-        class="w-full form-control form-select"
+        class="w-full block form-control form-select form-select-bordered"
         :class="{ 'border-danger': errors.has(name) }"
         :id="name"
         :value="tags[0]"
-        @input="$emit('input', [$event.target.value])"
+        @input="$emit('update:modelValue', [$event.target.value])"
     >
         <option value="" selected :disabled="!canBeDeselected">
             {{ placeholder ? placeholder : __('Choose an option') }}
         </option>
-        <option
-            v-for="tag in availableTags"
-            :key="tag"
-            :value="tag"
-        >
+        <option v-for="tag in availableTags" :key="tag" :value="tag">
             {{ tag }}
         </option>
     </select>
@@ -41,7 +37,7 @@ export default {
         getAvailableTags() {
             const queryString = this.type ? `filter[type]=${this.type}` : '';
 
-            window.axios
+            Nova.request()
                 .get(`/nova-vendor/spatie/nova-tags-field?${queryString}`)
                 .then(response => {
                     this.availableTags = response.data;
