@@ -1,6 +1,6 @@
 <template>
-    <default-field :field="field" :errors="errors" :show-help-text="showHelpText">
-        <template slot="field">
+    <DefaultField :field="field" :errors="errors" :show-help-text="showHelpText">
+        <template #field>
             <component
                 :is="component"
                 :name="field.attribute"
@@ -8,12 +8,13 @@
                 :suggestion-limit="field.suggestionLimit"
                 :limit="field.limit"
                 :errors="errors"
+                :tags="tags"
                 :placeholder="field.placeholder"
                 :can-be-deselected="field.canBeDeselected"
                 v-model="tags"
             ></component>
         </template>
-    </default-field>
+    </DefaultField>
 </template>
 
 <script>
@@ -26,7 +27,7 @@ export default {
 
     mixins: [FormField, HandlesValidationErrors],
 
-    props: ['field'],
+    props: ['resourceName', 'resourceId', 'field'],
 
     data() {
         return {
@@ -41,7 +42,7 @@ export default {
 
     computed: {
         component() {
-            return this.field.multiple ? 'multi-tags-input' : 'single-tags-input';
+            return this.field.multiple ? 'MultiTagsInput' : 'SingleTagsInput';
         },
     },
 
