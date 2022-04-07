@@ -4,7 +4,6 @@ namespace Spatie\TagsField\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Spatie\TagsField\Tags;
 use Symfony\Component\HttpFoundation\Response;
 
 class Authorize
