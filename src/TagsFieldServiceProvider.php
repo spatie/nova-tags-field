@@ -10,11 +10,6 @@ use Spatie\TagsField\Http\Middleware\Authorize;
 
 class TagsFieldServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         Nova::serving(function (ServingNova $event) {
@@ -27,11 +22,6 @@ class TagsFieldServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Register the field's routes.
-     *
-     * @return void
-     */
     protected function routes()
     {
         if ($this->app->routesAreCached()) {
@@ -41,15 +31,5 @@ class TagsFieldServiceProvider extends ServiceProvider
         Route::middleware(['nova', 'api', Authorize::class])
             ->prefix('nova-vendor/spatie/nova-tags-field')
             ->group(__DIR__.'/../routes/api.php');
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }

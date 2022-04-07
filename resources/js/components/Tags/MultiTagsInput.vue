@@ -96,9 +96,6 @@ export default {
         handleInput(tags) {
             this.$emit('update:modelValue', tags);
 
-            //this.tags = tags;
-
-            // Re-focus the input after a suggestion was inserted
             this.focusInput();
         },
     },
