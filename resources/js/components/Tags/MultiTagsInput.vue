@@ -19,15 +19,15 @@
             }"
         >
             <div
-                class="tags-input w-full form-control form-input form-input-bordered flex items-center"
+                class="tags-input w-full form-control form-input form-input-bordered h-auto p-2 flex flex-wrap items-center"
                 :class="{ 'border-danger': errors.has(name) }"
                 @click="focusInput"
             >
-                <span v-for="tag in tags" :key="tag" class="tags-input-tag mr-1">
+
+                <span v-for="tag in tags" :key="tag" class="flex items-center space-x-2 px-2 py-1 bg-primary-500 mr-1 mb-1 rounded text-white">
                     <span>{{ tag }}</span>
                     <button
                         type="button"
-                        class="tags-input-remove"
                         @click.prevent.stop="removeTag(tag)"
                     >
                         &times;
@@ -36,16 +36,17 @@
                 <input
                     v-if="canAddTag"
                     ref="input"
-                    class="tags-input-text dark:bg-gray-900"
+                    class="dark:bg-gray-900 outline-none p-1 w-32"
                     :placeholder="placeholder ? placeholder : __('Add tag...')"
                     v-bind="inputProps"
                     v-on="inputEvents"
                 />
+
             </div>
-            <ul v-if="suggestions.length" class="tags-input-suggestions">
-                <li v-for="suggestion in suggestions" :key="suggestion" class="mr-1">
+            <ul v-if="suggestions.length" class="flex mt-2 p-0">
+                <li v-for="suggestion in suggestions" :key="suggestion" class="mr-2">
                     <button
-                        class="tags-input-tag"
+                        class="px-2 py-1 bg-primary-100 rounded text-primary-500"
                         @mousedown.prevent
                         @click.prevent="insertSuggestion(suggestion)"
                     >
