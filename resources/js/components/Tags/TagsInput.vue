@@ -1,5 +1,6 @@
 <script>
 import { h } from 'vue';
+import { throttle } from 'lodash';
 
 export default {
     props: {
@@ -26,7 +27,7 @@ export default {
     },
 
     created() {
-        this.throttledGetSuggested = window._.throttle(this.getSuggested, 400);
+        this.throttledGetSuggested = throttle(this.getSuggested, 400);
     },
 
     computed: {
