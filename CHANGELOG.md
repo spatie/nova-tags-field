@@ -2,6 +2,20 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 4.0.3 - 2022-04-13
+
+## What's Changed
+
+- added TW classes to tags items and suggested list by @sp4r74cus in https://github.com/spatie/nova-tags-field/pull/151
+- Added lodash as a dev dependency by @jtkendall in https://github.com/spatie/nova-tags-field/pull/152
+
+## New Contributors
+
+- @sp4r74cus made their first contribution in https://github.com/spatie/nova-tags-field/pull/151
+- @jtkendall made their first contribution in https://github.com/spatie/nova-tags-field/pull/152
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/4.0.1...4.0.3
+
 ## 4.0.2 - 2022-04-10
 
 ## What's Changed
