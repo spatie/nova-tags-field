@@ -14,7 +14,7 @@ class TagsFieldServiceProvider extends ServiceProvider
     {
         Nova::serving(function (ServingNova $event) {
             Nova::script('nova-tags-field', __DIR__.'/../dist/js/field.js');
-            Nova::style('nova-tags-field', __DIR__.'/../dist/css/field.css');
+            //Nova::style('nova-tags-field', __DIR__.'/../dist/css/field.css');
         });
 
         $this->app->booted(function () {

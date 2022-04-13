@@ -2,6 +2,31 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 4.0.2 - 2022-04-10
+
+## What's Changed
+
+- added TW classes to tags items and suggested list by @sp4r74cus in https://github.com/spatie/nova-tags-field/pull/151
+
+## New Contributors
+
+- @sp4r74cus made their first contribution in https://github.com/spatie/nova-tags-field/pull/151
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/4.0.1...4.0.2
+
+## 4.0.1 - 2022-04-07
+
+## What's Changed
+
+- Dark mode support by @saundefined in https://github.com/spatie/nova-tags-field/pull/149
+- Remove unused sass
+
+## New Contributors
+
+- @saundefined made their first contribution in https://github.com/spatie/nova-tags-field/pull/149
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/4.0.0...4.0.1
+
 ## 4.0.0 - 2022-04-07
 
 ## What's Changed
