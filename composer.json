@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^7.3|^8.0",
         "laravel/nova": "^4.0",
         "spatie/laravel-tags": "^4.0"
     },
