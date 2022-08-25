@@ -29,10 +29,12 @@ jobs:
           cp ./vendor/laravel/nova/webpack.mix.js.dist ./vendor/laravel/nova/webpack.mix.js
 
       - name: Install NPM on Laravel Nova
-        run: yarn --cwd "./vendor/laravel/nova/" install
+        run: npm --prefix "./vendor/laravel/nova/" ci
 
       - name: Compile Asset
-        run: yarn run production
+        run: |
+          yarn install
+          yarn run production
         env:
           TAILWIND_MODE: build
 
