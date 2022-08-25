@@ -24,10 +24,6 @@ jobs:
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress
 
-      - name: Publish webpack.mix.js
-        run: |
-          cp ./vendor/laravel/nova/webpack.mix.js.dist ./vendor/laravel/nova/webpack.mix.js
-
       - name: Install NPM on Laravel Nova
         run: npm --prefix "./vendor/laravel/nova/" ci
 
