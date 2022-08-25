@@ -17,8 +17,8 @@ export default {
         tagFieldValue() {
             let fieldValue = this.fieldValue
 
-            return typeof fieldValue === 'object' ? fieldValue.join(', ' : fieldValue
-        }
+            return typeof fieldValue === 'object' ? fieldValue.join(', ') : fieldValue
+        },
     },
 };
 </script>
