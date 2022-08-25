@@ -3,37 +3,40 @@ name: update-assets
 on: [workflow_dispatch]
 
 jobs:
-    update:
-        name: Update assets
+  update:
+    name: Update assets
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            -   name: Setup Node 14
-                uses: actions/setup-node@v2
-                with:
-                    node-version: '14.x'
+      - name: Setup Node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
 
-            -   name: "Setup CI Authentication"
-                run: |
-                    composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_PASSWORD }}
+      - name: Setup CI Authentication
+        run: |
+          composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_PASSWORD }}
 
-            -   name: Publish webpack.mix.js
-                run: |
-                    cp ./vendor/laravel/nova/webpack.mix.js.dist ./vendor/laravel/nova/webpack.mix.js
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress
 
-            -   name: Install NPM on Laravel Nova
-                run: yarn --cwd "./vendor/laravel/nova/" install
+      - name: Publish webpack.mix.js
+        run: |
+          cp ./vendor/laravel/nova/webpack.mix.js.dist ./vendor/laravel/nova/webpack.mix.js
 
-            -   name: Compile Asset for Laravel Nova
-                run: npm run prod
-                env:
-                    TAILWIND_MODE: build
+      - name: Install NPM on Laravel Nova
+        run: yarn --cwd "./vendor/laravel/nova/" install
 
-            -   name: Commit changes
-                uses: stefanzweifel/git-auto-commit-action@v4
-                with:
-                    commit_message: Update Assets
+      - name: Compile Asset
+        run: npm run prod
+        env:
+          TAILWIND_MODE: build
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update Assets
