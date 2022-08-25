@@ -1,4 +1,4 @@
-name: update-assets
+name: "Update Assets"
 
 on: [workflow_dispatch]
 
@@ -32,7 +32,7 @@ jobs:
         run: yarn --cwd "./vendor/laravel/nova/" install
 
       - name: Compile Asset
-        run: npm run prod
+        run: yarn run production
         env:
           TAILWIND_MODE: build
 
