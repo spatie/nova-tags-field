@@ -2,6 +2,21 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 4.0.4 - 2022-09-01
+
+### What's Changed
+
+- recompiled with the latest laravel-nova js source instead of npm package by @max-zu in https://github.com/spatie/nova-tags-field/pull/153
+- Follow `laravel/nova` Testbench dependencies by @crynobone in https://github.com/spatie/nova-tags-field/pull/165
+- Add workflow to automatically update assets, fixes `displayUsing` and reduce `lodash` dist by @crynobone in https://github.com/spatie/nova-tags-field/pull/164
+
+### New Contributors
+
+- @max-zu made their first contribution in https://github.com/spatie/nova-tags-field/pull/153
+- @crynobone made their first contribution in https://github.com/spatie/nova-tags-field/pull/165
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/4.0.3...4.0.4
+
 ## 4.0.3 - 2022-04-13
 
 ## What's Changed
