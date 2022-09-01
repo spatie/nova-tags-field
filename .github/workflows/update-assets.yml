@@ -12,20 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node 14
+      - name: Setup Node 16
         uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
-
-      - name: Setup CI Authentication
-        run: |
-          composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_PASSWORD }}
-
-      - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress
-
-      - name: Install NPM on Laravel Nova
-        run: npm --prefix "./vendor/laravel/nova/" ci
+          node-version: '16.x'
 
       - name: Compile Asset
         run: |
