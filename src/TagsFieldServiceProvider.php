@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
-use Spatie\TagsField\Http\Middleware\Authorize;
 
 class TagsFieldServiceProvider extends ServiceProvider
 {
@@ -28,7 +27,7 @@ class TagsFieldServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::middleware(['nova', 'api', Authorize::class])
+        Route::middleware('nova:api')
             ->prefix('nova-vendor/spatie/nova-tags-field')
             ->group(__DIR__.'/../routes/api.php');
     }
