@@ -2,6 +2,18 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 4.0.5 - 2022-11-15
+
+### What's Changed
+
+- Updating routes to use configurable nova:api group. by @tommulroy in https://github.com/spatie/nova-tags-field/pull/170
+
+### New Contributors
+
+- @tommulroy made their first contribution in https://github.com/spatie/nova-tags-field/pull/170
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/4.0.4...4.0.5
+
 ## 4.0.4 - 2022-09-01
 
 ### What's Changed
