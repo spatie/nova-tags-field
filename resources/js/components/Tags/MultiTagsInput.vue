@@ -4,6 +4,7 @@
         :type="type"
         :suggestion-limit="suggestionLimit"
         :limit="limit"
+        :authorizedToAdd="authorizedToAdd"
         :value="modelValue"
         @updateTags="handleInput"
     >
@@ -70,6 +71,7 @@ export default {
         'errors',
         'placeholder',
         'limit',
+        'authorizedToAdd',
         'modelValue',
     ],
 
