@@ -10,6 +10,7 @@ export default {
         limit: { default: null },
         removeOnBackspace: { default: true },
         modelValue: { default: null },
+        authorizedToAdd: { default: true },
     },
 
     emits: ['updateTags'],
@@ -35,6 +36,10 @@ export default {
             return this.input.trim();
         },
         canAddTag() {
+            if (!this.authorizedToAdd) {
+                return false;
+            }
+
             if (typeof this.limit === 'undefined') {
                 return true;
             }
@@ -150,6 +155,7 @@ export default {
                 canAddTag: this.canAddTag,
                 selectTag: this.selectTag,
                 suggestions: this.suggestions,
+                authorizedToAdd: this.authorizedToAdd,
                 insertSuggestion: this.insertSuggestion,
                 inputProps: {
                     value: this.input,

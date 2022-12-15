@@ -2,15 +2,17 @@
 
 namespace Spatie\TagsField;
 
+use Closure;
 use Illuminate\Support\Arr;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Nova;
-use Spatie\Tags\Tag;
 
 class Tags extends Field
 {
     public $component = 'nova-tags-field';
+
+    protected bool $authorizedToAdd = true;
 
     public function __construct($name, $attribute = null, $resolveCallback = null)
     {
@@ -39,7 +41,7 @@ class Tags extends Field
                 }
             })->get();
 
-            return $tags->map(function (Tag $tag) use ($class, $uriKey) {
+            return $tags->map(function (mixed $tag) use ($class, $uriKey) {
                 $href = rtrim(Nova::path(), '/').'/resources/'.$uriKey.'/'.$tag->id;
 
                 return "<a href=\"$href\" class=\"$class\">$tag->name</a>";
@@ -53,6 +55,7 @@ class Tags extends Field
             'multiple' => $multiple,
             'suggestionLimit' => 5,
             'limit' => null,
+            'authorizedToAdd' => $this->authorizedToAdd,
         ]);
 
         if (! $this->meta['multiple']) {
@@ -80,6 +83,13 @@ class Tags extends Field
         }
 
         $this->withMeta(['canBeDeselected' => true]);
+
+        return $this;
+    }
+
+    public function authorizedToAdd(Closure $callback)
+    {
+        $this->withMeta(['authorizedToAdd' => (bool) $callback()]);
 
         return $this;
     }
@@ -127,7 +137,7 @@ class Tags extends Field
             $tags = $tags->where('type', $this->meta()['type']);
         }
 
-        return $tags->map(function (Tag $tag) {
+        return $tags->map(function (mixed $tag) {
             return $tag->name;
         })->values();
     }

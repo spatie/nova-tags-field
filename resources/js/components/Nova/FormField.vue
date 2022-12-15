@@ -9,6 +9,7 @@
                 :limit="field.limit"
                 :errors="errors"
                 :tags="tags"
+                :authorizedToAdd="field.authorizedToAdd"
                 :placeholder="field.placeholder"
                 :can-be-deselected="field.canBeDeselected"
                 v-model="tags"
