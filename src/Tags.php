@@ -119,9 +119,19 @@ class Tags extends Field
         });
     }
 
-    public function resolveAttribute($resource, $attribute = null)
+    protected function resolveDefaultValue(NovaRequest $request)
     {
-        $tags = $resource->tags;
+        $value = parent::resolveDefaultValue($request);
+
+        if (!$value || !is_iterable($value)) {
+            return collect();
+        }
+
+        $tags = collect($value)
+            ->filter(function ($possibleTag) {
+                return $possibleTag instanceof Tag;
+            })
+        ;
 
         if (Arr::has($this->meta(), 'type')) {
             $tags = $tags->where('type', $this->meta()['type']);
@@ -130,5 +140,20 @@ class Tags extends Field
         return $tags->map(function (Tag $tag) {
             return $tag->name;
         })->values();
+    }
+
+    public function resolveAttribute($resource, $attribute = null)
+    {
+        $tags = $resource->tags;
+
+        if (Arr::has($this->meta(), 'type')) {
+            $tags = $tags->where('type', $this->meta()['type']);
+        }
+
+        $values = $tags->map(function (Tag $tag) {
+            return $tag->name;
+        })->values();
+
+        return $values->isNotEmpty() ? $values : null;
     }
 }

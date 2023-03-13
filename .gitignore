@@ -9,3 +9,4 @@ phpunit.xml
 mix-manifest.json
 .php_cs.cache
 .php-cs-fixer.cache
+.idea
