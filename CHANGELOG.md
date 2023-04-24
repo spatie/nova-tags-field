@@ -2,6 +2,18 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 4.0.6 - 2023-04-24
+
+### What's Changed
+
+- Update Request to NovaRequest by @trippo in https://github.com/spatie/nova-tags-field/pull/177
+
+### New Contributors
+
+- @trippo made their first contribution in https://github.com/spatie/nova-tags-field/pull/177
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/4.0.5...4.0.6
+
 ## 4.0.5 - 2022-11-15
 
 ### What's Changed
