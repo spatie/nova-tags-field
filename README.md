@@ -55,7 +55,7 @@ class BlogPost extends Resource
 {
     // ...
     
-    public function fields(Request $request)
+    public function fields(NovaRequest $request)
     {
         return [
             // ...
@@ -99,7 +99,7 @@ The [underlying tags package](https://github.com/spatie/laravel-tags) has suppor
 ```php
 // in your Nova resource
 
-public function fields(Request $request)
+public function fields(NovaRequest $request)
 {
     return [
         // ...
@@ -118,7 +118,7 @@ If the user is only allowed to select one tag for your resource you can call the
 ```php
 // in your Nova resource
 
-public function fields(Request $request)
+public function fields(NovaRequest $request)
 {
     return [
         // ...
@@ -137,7 +137,7 @@ If you want to be able to deselect a tag, you can call the `canBeDeselected` met
 ```php
 // in your Nova resource
 
-public function fields(Request $request)
+public function fields(NovaRequest $request)
 {
     return [
         // ...
@@ -156,7 +156,7 @@ You can use the `withMeta` method [documented here](https://nova.laravel.com/doc
 ```php
 // in your Nova resource
 
-public function fields(Request $request)
+public function fields(NovaRequest $request)
 {
     return [
         // ...
@@ -179,8 +179,8 @@ If you want to perform crud actions on the save tags, just create a Nova resourc
 ```php
 namespace App\Nova;
 
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\Tags\Tag as TagModel;
 
 class Tag extends Resource
@@ -193,7 +193,7 @@ class Tag extends Resource
         'name',
     ];
 
-    public function fields(Request $request)
+    public function fields(NovaRequest $request)
     {
         return [
             Text::make('Name')->sortable(),
