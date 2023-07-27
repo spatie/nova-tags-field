@@ -2,6 +2,20 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 4.0.7 - 2023-07-27
+
+### What's Changed
+
+- Fix badge for `run-tests` workflow in README.md by @gomzyakov in https://github.com/spatie/nova-tags-field/pull/178
+- stop passing null values to explode() by @Gavrisimo in https://github.com/spatie/nova-tags-field/pull/179
+
+### New Contributors
+
+- @gomzyakov made their first contribution in https://github.com/spatie/nova-tags-field/pull/178
+- @Gavrisimo made their first contribution in https://github.com/spatie/nova-tags-field/pull/179
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/4.0.6...4.0.7
+
 ## 4.0.6 - 2023-04-24
 
 ### What's Changed
