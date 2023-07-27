@@ -109,8 +109,7 @@ class Tags extends Field
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
         $requestValue = $request[$requestAttribute];
-        $tagNames = explode('-----', $requestValue);
-        $tagNames = array_filter($tagNames);
+        $tagNames = is_null($requestValue) ? [] : array_filter(explode('-----', $requestValue));
 
         $class = get_class($model);
 
