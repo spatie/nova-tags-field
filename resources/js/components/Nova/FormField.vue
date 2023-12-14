@@ -31,7 +31,7 @@ export default {
 
     data() {
         return {
-            tags: this.field.value,
+            tags: this.field.value || [],
         };
     },
 
