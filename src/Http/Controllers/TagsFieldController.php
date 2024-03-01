@@ -16,6 +16,8 @@ class TagsFieldController extends Controller
             $query->containing($request['filter']['containing']);
         }
 
+        $query->whereUserId(\Auth::user()->id);
+
         if ($request->has('filter.type')) {
             $query->where('type', $request['filter']['type']);
         }
