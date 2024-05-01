@@ -19,12 +19,12 @@
             }"
         >
             <div
-                class="tags-input w-full form-control form-input form-input-bordered h-auto p-2 flex flex-wrap items-center"
-                :class="{ 'border-danger': errors.has(name) }"
+                class="tags-input w-full form-control form-input form-control-bordered h-auto p-1 flex flex-wrap items-center"
+                :class="{ 'border-danger': errors.has(name), 'form-control-focused': isActive }"
                 @click="focusInput"
             >
 
-                <span v-for="tag in tags" :key="tag" class="flex items-center space-x-2 px-2 py-1 bg-primary-500 mr-1 mb-1 rounded text-white">
+                <span v-for="tag in tags" :key="tag" class="flex items-center space-x-2 px-2 py-1 bg-primary-500 mr-1 rounded text-white">
                     <span>{{ tag }}</span>
                     <button
                         type="button"
@@ -40,6 +40,7 @@
                     :placeholder="placeholder ? placeholder : __('Add tag...')"
                     v-bind="inputProps"
                     v-on="inputEvents"
+                    @blur="blurInput"
                 />
 
             </div>
@@ -81,6 +82,7 @@ export default {
 
     data() {
         return {
+            isActive: false,
             tagsInput: this.tags,
         };
     },
@@ -89,11 +91,16 @@ export default {
 
     methods: {
         focusInput() {
+            this.isActive = true;
             if (this.$refs.input) {
                 this.$refs.input.focus();
             }
         },
 
+        blurInput() {
+            this.isActive = false;
+        },
+        
         handleInput(tags) {
             this.$emit('update:modelValue', tags);
 
