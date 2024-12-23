@@ -2,6 +2,18 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 4.1.0 - 2024-12-23
+
+### What's Changed
+
+* Support Nova 5 by @ziming in https://github.com/spatie/nova-tags-field/pull/185
+
+### New Contributors
+
+* @ziming made their first contribution in https://github.com/spatie/nova-tags-field/pull/185
+
+**Full Changelog**: https://github.com/spatie/nova-tags-field/compare/4.0.8...4.1.0
+
 ## 4.0.8 - 2024-05-01
 
 ### What's Changed
