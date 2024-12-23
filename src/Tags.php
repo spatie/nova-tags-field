@@ -118,7 +118,7 @@ class Tags extends Field
         });
     }
 
-    public function resolveAttribute($resource, $attribute = null)
+    public function resolveAttribute($resource, string $attribute): mixed
     {
         $tags = $resource->tags;
 
