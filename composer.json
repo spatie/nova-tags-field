@@ -22,8 +22,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "laravel/nova": "^4.13|^5.0",
-        "nova-kit/nova-packages-tool": "^1.2|^2.0",
+        "laravel/nova": "^5.0",
+        "nova-kit/nova-packages-tool": "^2.0",
         "spatie/laravel-tags": "^4.0"
     },
     "require-dev": {
