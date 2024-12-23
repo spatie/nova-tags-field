@@ -23,13 +23,11 @@
     "require": {
         "php": "^8.0",
         "laravel/nova": "^5.0",
-        "nova-kit/nova-packages-tool": "^2.0",
         "spatie/laravel-tags": "^4.0"
     },
     "require-dev": {
-        "mockery/mockery": "^1.4",
-        "orchestra/testbench": "^6.24|^7.0",
-        "phpunit/phpunit": "^9.4"
+        "laravel/nova-devtool": "^1.1",
+        "orchestra/testbench": "^8.30|^9.8"
     },
     "autoload": {
         "psr-4": {
