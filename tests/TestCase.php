@@ -3,7 +3,6 @@
 namespace Spatie\TagsField\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Workbench\Database\Seeders\DatabaseSeeder;

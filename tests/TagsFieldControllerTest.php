@@ -3,8 +3,8 @@
 namespace Spatie\TagsField\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
-use Spatie\TagsField\Tags;
 use Spatie\Tags\Tag;
+use Spatie\TagsField\Tags;
 use Workbench\App\Models\User;
 use Workbench\App\Nova\Tag as TagResource;
 use Workbench\Database\Factories\UserFactory;
