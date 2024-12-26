@@ -2,47 +2,26 @@
 
 namespace Spatie\TagsField\Tests;
 
-use CreateTagTables;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\Tags\TagsServiceProvider;
-use Spatie\TagsField\TagsFieldServiceProvider;
+use Workbench\Database\Seeders\DatabaseSeeder;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp(): void
+    use RefreshDatabase;
+    use WithWorkbench;
+
+    /** {@inheritDoc} */
+    protected function shouldSeed()
     {
-        parent::setUp();
-
-        Route::middlewareGroup('nova', []);
-
-        $this->setUpDatabase($this->app);
+        return true;
     }
 
-    protected function getPackageProviders($app)
+    /** {@inheritDoc} */
+    protected function seeder()
     {
-        return [
-            TagsServiceProvider::class,
-            TagsFieldServiceProvider::class,
-        ];
-    }
-
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     */
-    protected function setUpDatabase($app)
-    {
-        $this->artisan('migrate:fresh');
-
-        include_once __DIR__.'/../vendor/spatie/laravel-tags/database/migrations/create_tag_tables.php.stub';
-
-        (new CreateTagTables())->up();
-
-        Schema::create('test_models', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->nullable();
-        });
+        return DatabaseSeeder::class;
     }
 }
