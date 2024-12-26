@@ -22,11 +22,11 @@
     ],
     "require": {
         "php": "^8.0",
-        "laravel/nova": "^5.0",
+        "laravel/nova": "^5.0.6",
         "spatie/laravel-tags": "^4.0"
     },
     "require-dev": {
-        "laravel/nova-devtool": "^1.1",
+        "laravel/nova-devtool": "^1.2",
         "orchestra/testbench": "^8.30|^9.8"
     },
     "autoload": {

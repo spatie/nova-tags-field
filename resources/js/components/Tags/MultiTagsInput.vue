@@ -23,13 +23,13 @@
                 :class="{ 'border-danger': errors.has(name), 'form-control-focused': isActive }"
                 @click="focusInput"
             >
-
-                <span v-for="tag in tags" :key="tag" class="flex items-center space-x-2 px-2 py-1 bg-primary-500 mr-1 rounded text-white">
+                <span
+                    v-for="tag in tags"
+                    :key="tag"
+                    class="flex items-center space-x-2 px-2 py-1 bg-primary-500 mr-1 rounded text-white"
+                >
                     <span>{{ tag }}</span>
-                    <button
-                        type="button"
-                        @click.prevent.stop="removeTag(tag)"
-                    >
+                    <button type="button" @click.prevent.stop="removeTag(tag)">
                         &times;
                     </button>
                 </span>
@@ -42,7 +42,6 @@
                     v-on="inputEvents"
                     @blur="blurInput"
                 />
-
             </div>
             <ul v-if="suggestions.length" class="flex mt-2 p-0">
                 <li v-for="suggestion in suggestions" :key="suggestion" class="mr-2">
@@ -100,7 +99,7 @@ export default {
         blurInput() {
             this.isActive = false;
         },
-        
+
         handleInput(tags) {
             this.$emit('update:modelValue', tags);
 

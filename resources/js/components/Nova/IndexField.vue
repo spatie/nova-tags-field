@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="py-3 tags-index-field"
-        v-html="tagFieldValue"
-    ></div>
+    <div class="py-3 tags-index-field" v-html="tagFieldValue"></div>
 </template>
 
 <script>
@@ -15,9 +12,9 @@ export default {
 
     computed: {
         tagFieldValue() {
-            let fieldValue = this.fieldValue
+            let fieldValue = this.fieldValue;
 
-            return typeof fieldValue === 'object' ? fieldValue.join(', ') : fieldValue
+            return typeof fieldValue === 'object' ? fieldValue.join(', ') : fieldValue;
         },
     },
 };
