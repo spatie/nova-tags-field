@@ -22,14 +22,12 @@
     ],
     "require": {
         "php": "^8.0",
-        "laravel/nova": "^5.0",
-        "nova-kit/nova-packages-tool": "^2.0",
+        "laravel/nova": "^5.0.6",
         "spatie/laravel-tags": "^4.0"
     },
     "require-dev": {
-        "mockery/mockery": "^1.4",
-        "orchestra/testbench": "^6.24|^7.0",
-        "phpunit/phpunit": "^9.4"
+        "laravel/nova-devtool": "^1.2",
+        "orchestra/testbench": "^8.30|^9.8"
     },
     "autoload": {
         "psr-4": {
@@ -38,7 +36,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\TagsField\\Tests\\": "tests"
+            "Spatie\\TagsField\\Tests\\": "tests",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "extra": {
@@ -52,5 +53,24 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "test": [
+            "@clear",
+            "@php vendor/bin/testbench package:create-sqlite-db",
+            "@php vendor/bin/phpunit"
+        ]
+    }
 }

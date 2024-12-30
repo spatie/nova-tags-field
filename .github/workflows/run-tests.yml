@@ -9,14 +9,14 @@ jobs:
             fail-fast: true
             matrix:
                 os: [ubuntu-latest]
-                php: [8.1, 8.0]
-                laravel: [9.*, 8.*]
+                php: [8.4, 8.3, 8.2, 8.1, 8.0]
+                laravel: [11.*, 10.*]
                 dependency-version: [prefer-stable]
-                include:
-                    -   laravel: 9.*
-                        testbench: 7.*
-                    -   laravel: 8.*
-                        testbench: 6.*
+                exclude:
+                    -   php: 8.4
+                        laravel: 10.*
+                    -   php: 8.0
+                        laravel: 11.*
 
         name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
@@ -49,12 +49,15 @@ jobs:
             -   name: Install dependencies
                 run: |
                     composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with="laravel/framework:${{ matrix.laravel }}"
                 env:
                   COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
             -   name: Execute tests
                 run: vendor/bin/phpunit
                 env:
+                    DB_CONNECTION: 'mysql'
+                    DB_USERNAME: 'root'
+                    DB_DATABASE: 'nova_tags_field'
+                    DB_HOST: '127.0.0.1'
                     DB_PORT: ${{ job.services.mysql.ports[3306] }}

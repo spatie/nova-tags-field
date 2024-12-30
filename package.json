@@ -17,14 +17,13 @@
         "eslint": "^4.19.1",
         "eslint-config-prettier": "^2.9.0",
         "eslint-plugin-vue": "^4.4.0",
-        "laravel-mix": "^6.0",
+        "laravel-nova-devtool": "file:vendor/laravel/nova-devtool",
+        "lodash": "^4.17.21",
         "prettier": "^1.14.2",
-        "resolve-url-loader": "^5.0.0",
-        "vue-loader": "^16.2.0",
-        "lodash": "^4.17.21"
+        "resolve-url-loader": "^5.0.0"
     },
     "dependencies": {
         "animated-scroll-to": "^1.2.2",
-        "vue": "^3.0"
+        "vue": "^3.5.13"
     }
 }

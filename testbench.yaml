@@ -1,0 +1,34 @@
+laravel: '@testbench'
+
+providers:
+  - Laravel\Nova\NovaServiceProvider
+  - Laravel\Nova\NovaCoreServiceProvider
+  - Workbench\App\Providers\NovaServiceProvider
+  - Spatie\Tags\TagsServiceProvider
+  - Spatie\TagsField\TagsFieldServiceProvider
+
+migrations:
+  - workbench/database/migrations
+
+seeders:
+  - Workbench\Database\Seeders\DatabaseSeeder
+
+workbench:
+  start: /nova
+  build:
+    - package:discover
+    - asset-publish
+    - create-sqlite-db
+    - db:wipe
+    - migrate:refresh
+  assets:
+    - nova-assets
+  sync:
+    - from: storage
+      to: workbench/storage
+      reverse: true
+
+purge:
+  directories:
+    - lang/*
+    - public/vendor/*

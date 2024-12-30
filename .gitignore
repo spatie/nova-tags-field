@@ -2,10 +2,10 @@
 /vendor
 /node_modules
 auth.json
-package-lock.json
 composer.phar
 composer.lock
-phpunit.xml
 mix-manifest.json
+phpunit.xml
+yarn.lock
 .php_cs.cache
 .php-cs-fixer.cache
