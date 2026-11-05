@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "laravel/nova-devtool": "^1.2",
-        "orchestra/testbench": "^8.30|^9.8|^11.0"
+        "orchestra/testbench": "^10.0|^11.0"
     },
     "autoload": {
         "psr-4": {
