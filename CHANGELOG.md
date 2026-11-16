@@ -2,6 +2,22 @@
 
 All notable changes to `nova-tags-field` will be documented in this file
 
+## 5.0.3 - 2026-11-16
+
+### Fixed
+
+- Prevent saving one model from changing another model’s tags later in the request.
+- Preserve the tag name `0` and existing tags when the field is omitted. Explicitly clearing the field still removes its tags.
+- Render plain tag names safely on index and detail views, and escape tag-resource links. Custom `displayUsing` HTML remains supported.
+- Refresh compiled assets and verify reproducible builds in CI.
+
+### Testing
+
+All seven supported PHP 8.2–8.5 / Laravel 12–13 CI combinations passed against Nova 5.11.1 (9 tests, 27 assertions each). Asset formatting, production compilation and committed-asset reproducibility passed. Forms, single-select, detail views and resource links were also checked in a real Nova 5.11.1 app.
+
+Full changes: https://github.com/spatie/nova-tags-field/pull/192
+Full changelog: https://github.com/spatie/nova-tags-field/compare/5.0.2...5.0.3
+
 ## 5.0.2 - 2026-02-23
 
 ### What's Changed
