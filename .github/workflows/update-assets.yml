@@ -8,23 +8,38 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
-      - name: Setup Node 16
-        uses: actions/setup-node@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          node-version: '16.x'
+          php-version: '8.4'
+          coverage: none
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
 
       - name: Compile Asset
         run: |
-          yarn install
-          yarn run production
+          npm ci
+          npm run production
         env:
           TAILWIND_MODE: build
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: Update Assets

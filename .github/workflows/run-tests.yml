@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -48,9 +48,7 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Install dependencies
-        run: |
-          composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with="laravel/framework:${{ matrix.laravel }}"
+        run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with="laravel/framework:${{ matrix.laravel }}"
         env:
           COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
@@ -62,3 +60,18 @@ jobs:
           DB_DATABASE: nova_tags_field
           DB_HOST: 127.0.0.1
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
+
+      - name: Setup Node
+        if: matrix.php == '8.4' && matrix.laravel == '12.*'
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Check assets
+        if: matrix.php == '8.4' && matrix.laravel == '12.*'
+        run: |
+          npm ci
+          npm run check-format
+          npm run production
+          git diff --exit-code -- dist

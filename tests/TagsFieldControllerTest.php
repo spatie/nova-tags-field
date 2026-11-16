@@ -43,6 +43,98 @@ class TagsFieldControllerTest extends TestCase
     }
 
     #[Test]
+    public function updating_tags_does_not_change_other_users_tags()
+    {
+        $user = User::find(1);
+        $otherUser = UserFactory::new()->create(['tags' => ['other']]);
+
+        $this->actingAs($user)
+            ->putJson("nova-api/users/{$user->id}", [
+                'name' => $user->name,
+                'email' => $user->email,
+                'tags' => 'one-----two',
+            ])
+            ->assertSuccessful();
+
+        $this->assertEquals(['one', 'two'], $user->fresh()->tags->pluck('name')->all());
+
+        $otherUser->update(['name' => 'Updated name']);
+
+        $this->assertEquals(['other'], $otherUser->fresh()->tags->pluck('name')->all());
+    }
+
+    #[Test]
+    public function it_preserves_zero_as_a_tag_name()
+    {
+        $user = User::find(1);
+
+        $this->actingAs($user)
+            ->putJson("nova-api/users/{$user->id}", [
+                'name' => $user->name,
+                'email' => $user->email,
+                'tags' => '0-----one',
+            ])
+            ->assertSuccessful();
+
+        $this->assertEqualsCanonicalizing(['0', 'one'], $user->fresh()->tags->pluck('name')->all());
+    }
+
+    #[Test]
+    public function it_only_clears_tags_when_the_field_is_submitted()
+    {
+        $user = UserFactory::new()->create(['tags' => ['one']]);
+
+        $this->actingAs($user)
+            ->putJson("nova-api/users/{$user->id}", [
+                'name' => $user->name,
+                'email' => $user->email,
+            ])
+            ->assertSuccessful();
+
+        $this->assertEquals(['one'], $user->fresh()->tags->pluck('name')->all());
+
+        $this->putJson("nova-api/users/{$user->id}", [
+            'name' => $user->name,
+            'email' => $user->email,
+            'tags' => '',
+        ])->assertSuccessful();
+
+        $this->assertCount(0, $user->fresh()->tags);
+    }
+
+    #[Test]
+    public function it_can_save_tags_when_creating_a_user()
+    {
+        $this->actingAs(User::find(1))
+            ->postJson('nova-api/users', [
+                'name' => 'New user',
+                'email' => 'new@example.com',
+                'password' => 'secret-password',
+                'tags' => 'one-----new',
+            ])
+            ->assertSuccessful();
+
+        $user = User::where('email', 'new@example.com')->firstOrFail();
+
+        $this->assertEquals(['one', 'new'], $user->tags->pluck('name')->all());
+    }
+
+    #[Test]
+    public function tag_resource_links_escape_tag_names_and_attributes()
+    {
+        $user = UserFactory::new()->create(['tags' => ['<b>Tag & name</b>']]);
+        $tag = $user->tags->first();
+        $field = Tags::make('Tags')->withLinkToTagResource(TagResource::class, 'custom"class');
+
+        $field->resolveForDisplay($user);
+
+        $this->assertEquals(
+            '<a href="/nova/resources/tags/'.$tag->id.'" class="custom&quot;class">&lt;b&gt;Tag &amp; name&lt;/b&gt;</a>',
+            $field->jsonSerialize()['displayedAs']->first(),
+        );
+    }
+
+    #[Test]
     public function the_display_callback_is_valid()
     {
         $tags = Tag::all()->take(1);

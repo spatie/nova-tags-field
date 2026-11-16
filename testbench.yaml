@@ -1,6 +1,8 @@
 laravel: '@testbench'
 
 providers:
+  - Inertia\ServiceProvider
+  - Laravel\Fortify\FortifyServiceProvider
   - Laravel\Nova\NovaServiceProvider
   - Laravel\Nova\NovaCoreServiceProvider
   - Workbench\App\Providers\NovaServiceProvider

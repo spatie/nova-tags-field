@@ -9,3 +9,5 @@ phpunit.xml
 yarn.lock
 .php_cs.cache
 .php-cs-fixer.cache
+.phpunit.result.cache
+/workbench/storage
