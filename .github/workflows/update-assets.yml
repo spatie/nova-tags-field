@@ -34,7 +34,7 @@ jobs:
             echo "::error::Missing NOVA_LICENSE_KEY Actions secret (Nova license key)."
             exit 1
           fi
-          composer config http-basic.nova.laravel.com "$NOVA_USERNAME" "$NOVA_LICENSE_KEY"
+          composer config --global http-basic.nova.laravel.com "$NOVA_USERNAME" "$NOVA_LICENSE_KEY"
 
       - name: Install dependencies
         run: composer update --prefer-dist --no-interaction
