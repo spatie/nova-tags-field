@@ -1,20 +1,19 @@
 <template>
-    <div class="py-3 tags-index-field" v-html="tagFieldValue"></div>
+    <div class="py-3 tags-index-field">
+        <span v-if="field.usesCustomizedDisplay" v-html="tagFieldValue"></span>
+        <span v-else>{{ tagFieldValue }}</span>
+    </div>
 </template>
 
 <script>
-import { FieldValue } from 'laravel-nova';
-
 export default {
-    mixins: [FieldValue],
-
     props: ['resourceName', 'field'],
 
     computed: {
         tagFieldValue() {
-            let fieldValue = this.fieldValue;
+            const fieldValue = this.field.displayedAs ?? this.field.value;
 
-            return typeof fieldValue === 'object' ? fieldValue.join(', ') : fieldValue;
+            return Array.isArray(fieldValue) ? fieldValue.join(', ') : fieldValue;
         },
     },
 };

@@ -8,23 +8,51 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
-      - name: Setup Node 16
-        uses: actions/setup-node@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          node-version: '16.x'
+          php-version: '8.4'
+          coverage: none
+
+      - name: Configure Nova authentication
+        env:
+          NOVA_USERNAME: ${{ secrets.NOVA_USERNAME }}
+          NOVA_LICENSE_KEY: ${{ secrets.NOVA_LICENSE_KEY }}
+        run: |
+          if [ -z "$NOVA_USERNAME" ]; then
+            echo "::error::Missing NOVA_USERNAME Actions secret (Nova account email)."
+            exit 1
+          fi
+          if [ -z "$NOVA_LICENSE_KEY" ]; then
+            echo "::error::Missing NOVA_LICENSE_KEY Actions secret (Nova license key)."
+            exit 1
+          fi
+          composer config --global http-basic.nova.laravel.com "$NOVA_USERNAME" "$NOVA_LICENSE_KEY"
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
 
       - name: Compile Asset
         run: |
-          yarn install
-          yarn run production
+          npm ci
+          npm run production
         env:
           TAILWIND_MODE: build
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: Update Assets

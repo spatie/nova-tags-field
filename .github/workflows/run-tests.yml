@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: ['8.6', '8.5', '8.4', '8.3', '8.2']
+        php: ['8.5', '8.4', '8.3', '8.2']
         laravel: ['12.*', '13.*']
         dependency-version: [prefer-stable]
         exclude:
@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -47,12 +47,23 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Install dependencies
-        run: |
-          composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with="laravel/framework:${{ matrix.laravel }}"
+      - name: Configure Nova authentication
         env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+          NOVA_USERNAME: ${{ secrets.NOVA_USERNAME }}
+          NOVA_LICENSE_KEY: ${{ secrets.NOVA_LICENSE_KEY }}
+        run: |
+          if [ -z "$NOVA_USERNAME" ]; then
+            echo "::error::Missing NOVA_USERNAME Actions secret (Nova account email)."
+            exit 1
+          fi
+          if [ -z "$NOVA_LICENSE_KEY" ]; then
+            echo "::error::Missing NOVA_LICENSE_KEY Actions secret (Nova license key)."
+            exit 1
+          fi
+          composer config --global http-basic.nova.laravel.com "$NOVA_USERNAME" "$NOVA_LICENSE_KEY"
+
+      - name: Install dependencies
+        run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with="laravel/framework:${{ matrix.laravel }}"
 
       - name: Execute tests
         run: vendor/bin/phpunit
@@ -62,3 +73,18 @@ jobs:
           DB_DATABASE: nova_tags_field
           DB_HOST: 127.0.0.1
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
+
+      - name: Setup Node
+        if: matrix.php == '8.4' && matrix.laravel == '12.*'
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Check assets
+        if: matrix.php == '8.4' && matrix.laravel == '12.*'
+        run: |
+          npm ci
+          npm run check-format
+          npm run production
+          git diff --exit-code -- dist

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" backupGlobals="false" beStrictAboutTestsThatDoNotTestAnything="true" colors="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/schema/10.5.xsd">
   <coverage/>
+  <php>
+    <env name="APP_KEY" value="base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="/>
+  </php>
   <source>
     <include>
       <directory suffix=".php">src/</directory>

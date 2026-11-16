@@ -24,7 +24,7 @@ class Tags extends Field
         return $this->withMeta(['type' => $type]);
     }
 
-    public function withLinkToTagResource(string $tagResource = null, string $class = 'no-underline dim text-primary font-bold')
+    public function withLinkToTagResource(?string $tagResource = null, string $class = 'no-underline dim text-primary font-bold')
     {
         if (is_null($tagResource)) {
             $tagResource = 'App\Nova\Tag';
@@ -40,9 +40,11 @@ class Tags extends Field
             })->get();
 
             return $tags->map(function (Tag $tag) use ($class, $uriKey) {
-                $href = rtrim(Nova::path(), '/').'/resources/'.$uriKey.'/'.$tag->id;
+                $href = e(rtrim(Nova::path(), '/').'/resources/'.$uriKey.'/'.$tag->id);
+                $escapedClass = e($class);
+                $name = e($tag->name);
 
-                return "<a href=\"$href\" class=\"$class\">$tag->name</a>";
+                return "<a href=\"$href\" class=\"$escapedClass\">$name</a>";
             });
         });
     }
@@ -108,14 +110,16 @@ class Tags extends Field
 
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
+        if (! $request->exists($requestAttribute)) {
+            return;
+        }
+
         $requestValue = $request[$requestAttribute];
-        $tagNames = is_null($requestValue) ? [] : array_filter(explode('-----', $requestValue));
+        $tagNames = is_null($requestValue) ? [] : array_filter(explode('-----', $requestValue), fn (string $name) => $name !== '');
 
-        $class = get_class($model);
-
-        $class::saved(function ($model) use ($tagNames) {
+        return function () use ($model, $tagNames) {
             $model->syncTagsWithType($tagNames, $this->meta()['type'] ?? null);
-        });
+        };
     }
 
     public function resolveAttribute($resource, string $attribute): mixed
