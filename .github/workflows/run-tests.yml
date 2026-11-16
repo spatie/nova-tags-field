@@ -47,10 +47,23 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
+      - name: Configure Nova authentication
+        env:
+          NOVA_USERNAME: ${{ secrets.NOVA_USERNAME }}
+          NOVA_LICENSE_KEY: ${{ secrets.NOVA_LICENSE_KEY }}
+        run: |
+          if [ -z "$NOVA_USERNAME" ]; then
+            echo "::error::Missing NOVA_USERNAME Actions secret (Nova account email)."
+            exit 1
+          fi
+          if [ -z "$NOVA_LICENSE_KEY" ]; then
+            echo "::error::Missing NOVA_LICENSE_KEY Actions secret (Nova license key)."
+            exit 1
+          fi
+          composer config http-basic.nova.laravel.com "$NOVA_USERNAME" "$NOVA_LICENSE_KEY"
+
       - name: Install dependencies
         run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with="laravel/framework:${{ matrix.laravel }}"
-        env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Execute tests
         run: vendor/bin/phpunit
